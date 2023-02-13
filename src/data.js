@@ -10,7 +10,7 @@ export const films = {
     const dataFilmsCopy = [...dataFilms];
     return dataFilmsCopy.sort((a, b) => b.title.localeCompare(a.title));
   },
-  
+
   searchFilms: function searchFilms() {
     const input = document
       .getElementById("filter-name-input")
@@ -21,7 +21,7 @@ export const films = {
     //Iterar por todos os cards e selecionar os títulos pelo index de cada um
     for (let i = 0; i < cards.length; i++) {
       const titles = cards[i].querySelector("#film-title");
-      //console.log(titles);
+      console.log(titles);
 
       //Checar o texto do título em uppercase e o index de input no array
       if (titles.innerText.toUpperCase().indexOf(input) > -1) {

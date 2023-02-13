@@ -19,13 +19,13 @@ function showAnimations(allAnimations) {
   return allAnimations
     .map(
       (animation) =>
-        `
-          <div class="cards">
-          <img class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}>
-          <p id="film-title" class="film-info">${animation.title} </p>
-          <p class="film-info"> ${animation.release_date}</p>
-          </div>          
-  `
+      `
+      <div class="cards">
+      <img class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
+      <p id="film-title" class="film-info">${animation.title} </p>
+      <p class="film-info"> ${animation.release_date}</p>
+      </div>
+      `
     )
     .join("");
 }

@@ -22,11 +22,9 @@ const outputInverseAlphabetical = [
 ];
 
 describe('films', () => {
-  it('debería ser un objeto', () => {
+  it('is a object', () => {
     expect(typeof films).toBe('object');
   })});
-
-
 
 describe('films.alphabeticOrderFilter', () => {
   it('is a function', () => {
@@ -34,7 +32,6 @@ describe('films.alphabeticOrderFilter', () => {
   });
 
   it('returns an array in alphabetical order by title', () => {
-
     expect(films.alphabeticOrderFilter(inputOriginal)).toEqual(outputAlphabetical);
   });
 });
@@ -44,9 +41,7 @@ describe('films.inverseAlphabeticOrderFilter', () => {
     expect(typeof films.inverseAlphabeticOrderFilter).toBe('function');
   });
 
-  it('returns an array in inverse alphabetical order by title', () => {
-    
- 
+  it('returns an array in inverse alphabetical order by title', () => { 
     expect(films.inverseAlphabeticOrderFilter(inputOriginal)).toEqual(outputInverseAlphabetical);
   });
 });
