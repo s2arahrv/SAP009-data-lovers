@@ -15,14 +15,14 @@ export const films = {
     
   },
   searchFilms: function searchFilms(){
-    const input = document.getElementById("filter").value.toUpperCase();
+    const input = document.getElementById("filter-name-input").value.toUpperCase();
     //Chamar cards do HTML
     const cards = document.getElementsByClassName("cards");
   
     //Iterar por todos os cards e selecionar os títulos pelo index de cada um
     for (let i = 0; i < cards.length; i++) {
       const titles = cards[i].querySelector("#film-title");
-      //console.log(titles);
+      console.log(titles);
   
       //Checar o texto do título em uppercase e o index de input no array 
       if(titles.innerText.toUpperCase().indexOf(input) > -1){

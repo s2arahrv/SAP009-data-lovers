@@ -21,7 +21,7 @@
         </div>
       </header>
       <main>
-        <div class="top-info">
+        <div class="top-info">         
           <div id="buttons">
             <input
               type="submit"
@@ -29,30 +29,25 @@
               class="filter-button"
               value="Show films from A - Z"
             />
-          </div>
+            <input
+            type="text"
+            name=""
+            class="filter-inputs"
+            id="filter-name-input"
+            placeholder="Search by name"
+          />
+          </div>          
         </div>
-        <div class="filter">
-          <label id="filter-type"></label>
+       <div class="bottom-info">
+        <div class="filter-type">
+          <label id="label-filter-type">Animations by Release Date</label>
         </div>
-
-        <div id="list-container">
-          <div id="buttons">
-            <div class="buttons">
-            <button class="filterBtn">Ordenar A-Z</button>
-            <input type="text" name="" class="filter-inputs" id="filter" placeholder="Search...">
-            <button id="az-bt" class="filter-inputs">Sort A-Z</button>
-            </div>
-          </div>
-          </div>
-          
+       </div>          
         <div class="animation-cards">
-          <div class="card"></div>
-        </div>
+          </div>
       </main>
     </div>
-
     <footer>Data Lovers - Laboratória 2023</footer>
-
     <script src="main.js" type="module"></script>
   </body>
 </html>

@@ -13,13 +13,10 @@ html,
 body {
   height: 100vh;
   width: 100vw;
-
-
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  
+  font-family: Arial, Helvetica, sans-serif;  
 }
 
 @font-face {
@@ -34,7 +31,7 @@ body {
 
 header {
   display: flex;
-  height: 15vh;
+  height: 18vh;
   color: #1c6773;
   font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
   text-align: center;
@@ -66,7 +63,7 @@ h2 {
 
 main {
   background-color: #fcf8ee;
-  height: 80vh;
+  height: 77vh;
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -77,9 +74,69 @@ main {
 .top-info {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  padding-top: 2rem;
+  padding-right: 5rem; 
+}
+
+.bottom-info {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
- 
- padding: 2rem 6rem;
+  padding-top: 2rem;
+  display: flex;
+  height: 6rem;
+  align-items: center;
+  padding-right: 6rem;
+  padding-left: 5.2rem; 
+}
+
+
+#filter-name-input {
+  background-color: #c8e1e4;
+  border-radius: 1rem;
+  border: none;
+  width: 15vw;
+  padding: 0.5rem;
+  outline: none;
+  font-size: 1.5rem;
+  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
+  height: 4rem;
+  margin-left: 3rem;  
+}
+
+#filter-name-input:active {
+  color: #c8e1e4;
+}
+
+.filter-button{
+  background-color: #ECD89A;
+  border: none;  
+  font-size: 1.5rem;
+  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
+  border-radius: 1rem;
+  border: none;
+  height: 4rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-left: 2rem;
+  align-items: center;  
+}
+
+.filter-type {
+  display: flex;
+  padding-left: 6rem;
+  font-size: 2rem;
+  color: #1c6773; 
+}
+
+.list-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+  height: 4rem;
 }
 
 .animation-cards {
@@ -87,7 +144,10 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 3rem;   
+  padding-top: 2rem; 
+  padding-left: 3rem;
+  padding-right: 3rem;
+  font-size: 1.6rem;
 }
 
 .cards {
@@ -99,12 +159,9 @@ main {
   height: 36rem;
   margin: 2rem;
   justify-content: center;
-  justify-content: baseline;
   align-items: center;
   padding-top: 1.4rem;
-  padding-bottom: 1rem;
-  font-size: 1.6rem;
-
+  padding-bottom: 1rem; 
 }
 
 .cards:hover{
@@ -117,11 +174,6 @@ main {
   height: 28rem;
   padding-bottom: 1rem;
   border-radius: 1rem;
-
-}
-
-.list-container {
-  
 }
 
 footer {
@@ -134,45 +186,4 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
-}
-
-#list-container {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.6rem;
-  padding: 2rem 5rem 0 5rem;
-}
-
-#filter {
-  background-color: #c8e1e4;
-  border-radius: 1rem;
-  border: none;
-  width: 15vw;
-  padding: 0.5rem;
-  outline: none;
-}
-
-#filter:active {
-  color: #c8e1e4;
-}
-
-#az-bt {
-  background-color: #ECD89A;
-  border: none;
-  width: 7vw;
-}
-
-#az-bt:active {
-  background-color: #e85b64;
-  color: #c8e1e4;
-}
-
-.filter-inputs {
-  font-size: 1.5rem;
-  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
-  border-radius: 1rem;
-  border: none;
-  height: 4vh;
 }
