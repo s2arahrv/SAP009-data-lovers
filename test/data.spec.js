@@ -54,3 +54,4 @@ describe('films.searchFilms', () => {
     expect(typeof films.searchFilms).toBe('function');
   });
 });
+
