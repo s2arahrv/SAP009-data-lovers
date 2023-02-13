@@ -9,7 +9,7 @@ const filterType = document.getElementById("label-filter-type");
 filterButton.addEventListener("click", defineAlphabeticalFilter);
 
 const inputArea = document.getElementById("filter-name-input");
-inputArea.addEventListener("keydown", films.searchFilms);
+inputArea.addEventListener("keyup", films.searchFilms);
 
 document.querySelector(".animation-cards").innerHTML =
   showAnimations(allAnimations);
@@ -18,13 +18,12 @@ function showAnimations(allAnimations) {
   return allAnimations
     .map(
       (animation) =>
-        `<div class="all-cards">
+        `
           <div class="cards">
-          <img class="posters" src="${animation.poster}" alt="Pôster do filme">
+          <img class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}>
           <p id="film-title" class="film-info">${animation.title} </p>
           <p class="film-info"> ${animation.release_date}</p>
-          </div>
-          </div>  
+          </div>          
   `
     )
     .join("");
@@ -33,7 +32,8 @@ function showAnimations(allAnimations) {
 //essa função pode ser mudada para receber diferentes filtros e passar pra 
 //proxima funcao de exibição
 
-function defineAlphabeticalFilter() {
+function defineAlphabeticalFilter(event) {
+  event.preventDefault();
   let alphabeticalFilter = null;
   if (filterButton.value === "Show films from A - Z") {
     alphabeticalFilter = films.alphabeticOrderFilter(allAnimations);
@@ -52,12 +52,12 @@ function showFilmsAlphabeticalOrder(alphabeticalFilter) {
     .map(
       (animation) =>
         `
-<div class="cards">
-<img class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
-<p class="film-info">${animation.title} </p>
-<p class="film-info"> ${animation.release_date}</p>
-</div>
-`
+        <div class="cards">
+        <img class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
+        <p id="film-title" class="film-info">${animation.title} </p>
+        <p class="film-info"> ${animation.release_date}</p>
+        </div>
+        `
     )
     .join("");
 }
