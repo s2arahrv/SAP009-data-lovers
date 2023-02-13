@@ -3,13 +3,14 @@ import { films } from "./data.js";
 
 const allAnimations = data.films;
 const animationCards = document.querySelector(".animation-cards");
+
 const filterButton = document.getElementById("filter-button");
 const filterType = document.getElementById("filter-type");
 // document.querySelector(".animation-cards").innerHTML = showAnimations(allAnimations);
 filterButton.addEventListener("click", defineAlphabeticalFilter);
 
-  const inputArea = document.getElementById("filter");
-  inputArea.addEventListener("keyup", films.searchFilms);
+const inputArea = document.getElementById("filter");
+inputArea.addEventListener("keyup", films.searchFilms);
 
 document.querySelector(".animation-cards").innerHTML = showAnimations1(allAnimations);
 
@@ -48,7 +49,7 @@ function defineAlphabeticalFilter() {
   if (filterButton.value === "Show films from A - Z") {
     alphabeticalFilter = films.alphabeticOrderFilter(allAnimations);
     filterButton.value = "Show films from Z - A";
-   filterType.innerHTML = "A - Z";
+    filterType.innerHTML = "A - Z";
 
   } else if (filterButton.value === "Show films from Z - A") {
     alphabeticalFilter = films.inverseAlphabeticOrderFilter(allAnimations);
