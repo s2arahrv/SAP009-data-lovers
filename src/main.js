@@ -3,6 +3,7 @@ import { films } from "./data.js";
 
 const allAnimations = data.films;
 const animationCards = document.querySelector(".animation-cards");
+
 const filterButton = document.getElementById("filter-button");
 const filterType = document.getElementById("label-filter-type");
 
@@ -38,6 +39,8 @@ function defineAlphabeticalFilter(event) {
   if (filterButton.value === "Show films from A - Z") {
     alphabeticalFilter = films.alphabeticOrderFilter(allAnimations);
     filterButton.value = "Show films from Z - A";
+
+    filterType.innerHTML = "A - Z";
     filterType.innerHTML = "Animations from A - Z";
   } else if (filterButton.value === "Show films from Z - A") {
     alphabeticalFilter = films.inverseAlphabeticOrderFilter(allAnimations);
