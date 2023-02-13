@@ -30,6 +30,7 @@ function showAnimations(allAnimations) {
     .join("");
 }
 
+
 //essa função pode ser mudada para receber diferentes filtros e passar pra 
 //proxima funcao de exibição
 
