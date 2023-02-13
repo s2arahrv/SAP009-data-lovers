@@ -7,14 +7,14 @@ const inputOriginal = [
   { title: 'coup', year: 2016 },
 ];
 
-const inputAlphabetical = [
+const outputAlphabetical = [
   { title: 'chaos', year: 2018 },
   { title: 'coup', year: 2016 },
   { title: 'hope', year: 2023 },
   { title: 'star', year: 2003 },
 ];
 
-const inputInverseAlphabetical = [
+const outputInverseAlphabetical = [
   { title: 'star', year: 2003 },
   { title: 'hope', year: 2023 },
   { title: 'coup', year: 2016 },
@@ -35,7 +35,7 @@ describe('films.alphabeticOrderFilter', () => {
 
   it('returns an array in alphabetical order by title', () => {
 
-    expect(films.alphabeticOrderFilter(inputOriginal)).toEqual(inputAlphabetical);
+    expect(films.alphabeticOrderFilter(inputOriginal)).toEqual(outputAlphabetical);
   });
 });
 
@@ -47,7 +47,7 @@ describe('films.inverseAlphabeticOrderFilter', () => {
   it('returns an array in inverse alphabetical order by title', () => {
     
  
-    expect(films.inverseAlphabeticOrderFilter(inputOriginal)).toEqual(inputInverseAlphabetical);
+    expect(films.inverseAlphabeticOrderFilter(inputOriginal)).toEqual(outputInverseAlphabetical);
   });
 });
 
