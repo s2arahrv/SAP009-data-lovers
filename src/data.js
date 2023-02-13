@@ -15,7 +15,7 @@ export const films = {
     
   },
   searchFilms: function searchFilms(){
-    const input = document.getElementById("filter").value.toUpperCase();
+    const input = document.getElementById("filter-name-input").value.toUpperCase();
     //Chamar cards do HTML
     const cards = document.getElementsByClassName("cards");
   
