@@ -188,7 +188,7 @@ footer {
   width: 100%;
 }
 
-.modal-wrapper {
+#modal-wrapper {
   position: fixed;
   display: flex;
   align-items: center;
@@ -200,8 +200,14 @@ footer {
   background-color: rgba(0, 0, 0, 0.3);
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
+#modal-wrapper.show {
+  opacity: 1;
+  pointer-events: auto;
+
+}
 .modal {
   background-color: #fff;
   width: 60rem;
