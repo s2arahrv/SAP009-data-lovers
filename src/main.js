@@ -10,7 +10,7 @@ const filterType = document.getElementById("label-filter-type");
 filterButton.addEventListener("click", defineAlphabeticalFilter);
 
 const inputArea = document.getElementById("filter-name-input");
-inputArea.addEventListener("keyup", films.searchFilms);
+inputArea.addEventListener("keyup", searchFilms);
 
 document.querySelector(".animation-cards").innerHTML =
   showAnimations(allAnimations);
@@ -19,7 +19,7 @@ function showAnimations(allAnimations) {
   return allAnimations
     .map(
       (animation) =>
-      `
+        `
       <div class="cards">
       <img class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
       <p id="film-title" class="film-info">${animation.title} </p>
@@ -77,3 +77,31 @@ function createElement(data) {
 }
 
 createElement(allAnimations);
+
+function searchFilms() {
+  const input = document
+    .getElementById("filter-name-input")
+    .value.toUpperCase();
+  //Chamar cards do HTML
+  const cards = document.getElementsByClassName("cards");
+
+  //Iterar por todos os cards e selecionar os títulos pelo index de cada um
+  for (let i = 0; i < cards.length; i++) {
+    const titles = cards[i].querySelector("#film-title");
+
+    //Checar o texto do título em uppercase e o index de input no array
+    if (titles.innerText.toUpperCase().indexOf(input) > -1) {
+      //Retornar o card do array se o index for válido, ou seja, existir no array (igual ou maior que 0)
+      cards[i].style.display = "";
+    } else {
+      //Se o index for inválido, o display será nulo, e nada aparecerá
+      cards[i].style.display = "none";
+    }
+
+    //console.log(cards);
+  }
+}
+
+
+const modal_container = document.getElementById("modal-wrapper");
+const close = document.getElementById("close");
