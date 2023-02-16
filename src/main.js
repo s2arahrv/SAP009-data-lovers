@@ -15,13 +15,59 @@ inputArea.addEventListener("keyup", searchFilms);
 document.querySelector(".animation-cards").innerHTML =
   showAnimations(allAnimations);
 
+const images = document.querySelectorAll(".posters");
+
+images.forEach((img) => {
+  img.addEventListener("click", function () {
+    alert('clickopen');
+    const index = this.id;
+    modal_container.classList.add("show");
+    showDescription(index);
+    
+  });
+});
+
+const modal_container = document.getElementById("modal-wrapper");
+const close = document.getElementById("close");
+const open = document.getElementById("open");
+
+// open.addEventListener("click", () => {
+//   alert('clickopen');
+//   modal_container.classList.add("show");
+// });
+
+close.addEventListener("click", () => {
+  alert('click');
+  modal_container.classList.remove("show");
+});
+
+
+//ESTAMOS USANDO ESSA FUNCAO
+function showDescription(index) {
+
+  const teste = allAnimations[index];
+  
+  const t = document.getElementById("modal-container");
+  t.innerHTML =  `
+  <div class="modal-container">
+  <img id="${index}" class="posters" src="${teste.poster}" alt="Pôster de ${teste.title}">
+  <p id="film-title" class="film-info">${teste.description} </p>
+  <p class="film-info"> ${teste.producer}</p>
+  <button class="buttons" id="close">Close Me</button>
+  </div>
+
+  `
+  modal_container.classList.add("show");
+}
+
+
 function showAnimations(allAnimations) {
   return allAnimations
     .map(
-      (animation) =>
+      (animation, index) =>
         `
       <div class="cards">
-      <img class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
+      <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
       <p id="film-title" class="film-info">${animation.title} </p>
       <p class="film-info"> ${animation.release_date}</p>
       </div>
@@ -101,11 +147,3 @@ function searchFilms() {
   }
 }
 
-
-const modal_container = document.getElementById("modal-wrapper");
-const close = document.getElementById("close");
-const open = document.getElementById("open");
-
-open.addEventListener("click", () =>  {
-  modal_container.classList.add("show");
-})
