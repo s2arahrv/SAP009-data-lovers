@@ -19,7 +19,7 @@ function showAnimations(allAnimations) {
   return allAnimations
     .map(
       (animation) =>
-      `
+        `
       <div class="cards">
       <img class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
       <p id="film-title" class="film-info">${animation.title} </p>
@@ -30,8 +30,7 @@ function showAnimations(allAnimations) {
     .join("");
 }
 
-
-//essa função pode ser mudada para receber diferentes filtros e passar pra 
+//essa função pode ser mudada para receber diferentes filtros e passar pra
 //proxima funcao de exibição
 
 function defineAlphabeticalFilter(event) {
