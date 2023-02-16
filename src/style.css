@@ -187,3 +187,25 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+.modal-wrapper {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  background-color: #fff;
+  width: 60rem;
+  height: 50rem;
+  border-radius: 1rem;
+  max-width: 100%;
+}
