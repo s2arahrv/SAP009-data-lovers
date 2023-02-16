@@ -101,3 +101,7 @@ function searchFilms() {
     //console.log(cards);
   }
 }
+
+
+const modal_container = document.getElementById("modal-wrapper");
+const close = document.getElementById("close");
