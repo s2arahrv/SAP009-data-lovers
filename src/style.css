@@ -209,3 +209,8 @@ footer {
   border-radius: 1rem;
   max-width: 100%;
 }
+
+.modal-wrapper.show {
+  opacity: 1;
+  pointer-events: auto;
+}

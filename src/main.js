@@ -104,3 +104,8 @@ function searchFilms() {
 
 const modal_container = document.getElementById("modal-wrapper");
 const close = document.getElementById("close");
+const open = document.getElementById("open");
+
+open.addEventListener("click", () =>  {
+  modal_container.classList.add("show");
+})
