@@ -2,21 +2,28 @@ import data from "./data/ghibli/ghibli.js";
 import { films } from "./data.js";
 
 const allAnimations = data.films;
-const animationCards = document.querySelector(".animation-cards");
 
 const filterButton = document.getElementById("filter-button");
-const filterType = document.getElementById("label-filter-type");
-
 filterButton.addEventListener("click", defineAlphabeticalFilter);
+
+const filterType = document.getElementById("label-filter-type");
 
 const inputArea = document.getElementById("filter-name-input");
 inputArea.addEventListener("keyup", searchFilms);
 
+const animationCards = document.querySelector(".animation-cards");
 document.querySelector(".animation-cards").innerHTML =
   showAnimations(allAnimations);
 
-const images = document.querySelectorAll(".posters");
+const modal_container = document.getElementById("modal-wrapper");
 
+const close = document.getElementById("close");
+close.addEventListener("click", () => {
+  alert("click");
+  modal_container.classList.remove("show");
+});
+
+const images = document.querySelectorAll(".posters");
 images.forEach((img) => {
   img.addEventListener("click", function () {
     alert("clickopen");
@@ -35,9 +42,14 @@ btn.forEach((bt) => {
   });
 });
 
+const more = document.getElementById("more");
+more.addEventListener("click", () => {
+  films.charactersFilteredByFilm(allAnimations[0].people);
+});
+
+// NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
 function showCharactersByFilm(index) {
-  const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);
-  
+  const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);  
  
   const animationCardsHTML = charactersByFilm
     .map((element) => {
@@ -55,15 +67,8 @@ function showCharactersByFilm(index) {
   animationCards.innerHTML = animationCardsHTML;
 }
 
-const modal_container = document.getElementById("modal-wrapper");
-const close = document.getElementById("close");
 
-close.addEventListener("click", () => {
-  alert("click");
-  modal_container.classList.remove("show");
-});
-
-//ESTAMOS USANDO ESSA FUNCAO
+//ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
 function showDescription(index) {
   const teste = allAnimations[index];
   data.films[0];
@@ -85,6 +90,9 @@ function showDescription(index) {
   });
 }
 
+
+// MOSTRA TODAS AS ANIMACOES LOGO QUE ABRE 
+// STATUS: SEM MODAL
 function showAnimations(allAnimations) {
   return allAnimations
     .map(
@@ -101,10 +109,6 @@ function showAnimations(allAnimations) {
     .join("");
 }
 
-const more = document.getElementById("more");
-more.addEventListener("click", () => {
-  films.charactersFilteredByFilm(allAnimations[0].people);
-});
 
 //essa função pode ser mudada para receber diferentes filtros e passar pra
 //proxima funcao de exibição
@@ -126,6 +130,10 @@ function defineAlphabeticalFilter(event) {
   showFilmsAlphabeticalOrder(alphabeticalFilter);
 }
 
+// MOSTRA TODAS AS ANIMACOES LOGO QUE CLICA NO FILTRO A-Z 
+// STATUS: SEM MODAL
+// SUGESTAO - FUNDIR FUNCAO COM SHOWALLANIMATIONS
+
 function showFilmsAlphabeticalOrder(alphabeticalFilter) {
   animationCards.innerHTML = alphabeticalFilter
     .map(
@@ -141,17 +149,23 @@ function showFilmsAlphabeticalOrder(alphabeticalFilter) {
     .join("");
 }
 
-function createElement(data) {
-  const parentDiv = document.querySelector(".bottom-info");
-  const childDiv = document.querySelector(".filter-type");
-  const animationsTotal = document.createElement("div");
-  animationsTotal.classList.add("list-container");
-  animationsTotal.innerHTML =
-    "Total number of animations produced by Studio Ghibli: " + data.length;
-  parentDiv.insertBefore(animationsTotal, childDiv);
+// INICIO DA IDEIA DE CALCULO AGREGADO
+// STATUS: PAROU DE FUNCIONAR
+// SUGESTAO PRECISA IR UM PEDAÇO PRA DATA.JS
+function createElement() {
+  alert('DODO');
+  // console.log('JSS');
+  // const parentDiv = document.querySelector(".bottom-info");
+  // const childDiv = document.querySelector(".filter-type");
+  // const animationsTotal = document.createElement("div");
+  // animationsTotal.classList.add("list-container");
+  // animationsTotal.innerHTML =
+  //   "Total number of animations produced by Studio Ghibli: " + allAnimations.length;
+  // parentDiv.insertBefore(animationsTotal, childDiv);
 }
 
-createElement(allAnimations);
+createElement();
+
 
 function searchFilms() {
   const input = document
