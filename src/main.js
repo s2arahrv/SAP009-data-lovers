@@ -19,36 +19,56 @@ const images = document.querySelectorAll(".posters");
 
 images.forEach((img) => {
   img.addEventListener("click", function () {
-    alert('clickopen');
+    alert("clickopen");
     const index = this.id;
     modal_container.classList.add("show");
     showDescription(index);
-    
   });
 });
 
+const btn = document.querySelectorAll(".more");
+btn.forEach((bt) => {
+  bt.addEventListener("click", function () {
+    const index = this.id;
+    console.log(index);
+    showCharactersByFilm(index);
+  });
+});
+
+function showCharactersByFilm(index) {
+  const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);
+  
+ 
+  const animationCardsHTML = charactersByFilm
+    .map((element) => {
+      return `
+        <div class="cards">
+        <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
+          <p id="film-title" class="film-info">${element.name}</p>
+          <p class="film-info">${element.gender}</p>
+          <button class="more" id="${index}">More</button>
+        </div>
+      `;
+    })
+    .join("");
+
+  animationCards.innerHTML = animationCardsHTML;
+}
+
 const modal_container = document.getElementById("modal-wrapper");
 const close = document.getElementById("close");
-const open = document.getElementById("open");
-
-// open.addEventListener("click", () => {
-//   alert('clickopen');
-//   modal_container.classList.add("show");
-// });
 
 close.addEventListener("click", () => {
-  alert('click');
+  alert("click");
   modal_container.classList.remove("show");
 });
 
-
 //ESTAMOS USANDO ESSA FUNCAO
 function showDescription(index) {
-
   const teste = allAnimations[index];
-  
+  data.films[0];
   const t = document.getElementById("modal-container");
-  t.innerHTML =  `
+  t.innerHTML = `
   <div class="modal-container">
   <img id="${index}" class="posters" src="${teste.poster}" alt="Pôster de ${teste.title}">
   <p id="film-title" class="film-info">${teste.description} </p>
@@ -56,10 +76,14 @@ function showDescription(index) {
   <button class="buttons" id="close">Close Me</button>
   </div>
 
-  `
+  `;
   modal_container.classList.add("show");
-}
 
+  const closeButton = document.querySelector(".modal-container #close");
+  closeButton.addEventListener("click", () => {
+    modal_container.classList.remove("show");
+  });
+}
 
 function showAnimations(allAnimations) {
   return allAnimations
@@ -70,11 +94,17 @@ function showAnimations(allAnimations) {
       <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
       <p id="film-title" class="film-info">${animation.title} </p>
       <p class="film-info"> ${animation.release_date}</p>
+      <button class="more" id="${index}">More</button>
       </div>
       `
     )
     .join("");
 }
+
+const more = document.getElementById("more");
+more.addEventListener("click", () => {
+  films.charactersFilteredByFilm(allAnimations[0].people);
+});
 
 //essa função pode ser mudada para receber diferentes filtros e passar pra
 //proxima funcao de exibição
@@ -146,4 +176,3 @@ function searchFilms() {
     //console.log(cards);
   }
 }
-

@@ -10,4 +10,11 @@ export const films = {
     const dataFilmsCopy = [...dataFilms];
     return dataFilmsCopy.sort((a, b) => b.title.localeCompare(a.title));
   },
+
+  filterCharacterByFilm: function filterCharacterByFilm (dataFilms, index)
+  {
+    const dataFilmsCopy = [...dataFilms];
+    return dataFilmsCopy[index].people;
+    
+  }
 };
