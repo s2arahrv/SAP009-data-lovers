@@ -36,55 +36,15 @@ btn.forEach((bt) => {
   });
 });
 
-const more = document.getElementById("more");
-more.addEventListener("click", () => {
-  films.charactersFilteredByFilm(allAnimations[0].people);
-});
-
-
-// NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
-function showCharactersByFilm(index) {
-  const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);  
- 
-  //BOTAO VOLTAR 
-  //STATUS: NAO FUNCIONA
-
-  const parentDiv = document.querySelector(".bottom-info");
-  
-  const animationsTotal = document.createElement("div");
-  animationsTotal.classList.add("list-container");
-  animationsTotal.innerHTML = `<button id="baba" onclick="goBack()">Go Back</button>`;
-    
-  
-  parentDiv.appendChild(animationsTotal);
-  const baba = document.querySelector("#baba");
-  baba.addEventListener("click", () => {
-    history.pushState(null, null, document.referrer);
-    window.location.reload();
-  });
-
-
-  const animationCardsHTML = charactersByFilm
-    .map((element) => {
-      return `
-      
-        <div class="cards">
-        <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
-          <p id="film-title" class="film-info">${element.name}</p>
-          <p class="film-info">${element.gender}</p>
-          <button class="more" id="${index}">More</button>
-        </div>
-      `;
-    })
-    .join("");
-
-  animationCards.innerHTML = animationCardsHTML;
-}
-
+// const more = document.querySelectorAll(".more");
+// more.addEventListener("click", () => {
+//   alert('1hshs')
+//   films.charactersFilteredByFilm(allAnimations[0].people);
+// });
 
 //ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
 function showDescription(index) {
-  alert('gaga');
+  
   const teste = allAnimations[index];
   data.films[0];
   const t = document.getElementById("modal-container");
@@ -152,31 +112,37 @@ function defineAlphabeticalFilter(event) {
 function showFilmsAlphabeticalOrder(alphabeticalFilter) {
   animationCards.innerHTML = alphabeticalFilter
     .map(
-      (animation) =>
+      (animation, index) =>
         `
         <div class="cards">
-        <img class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
+        <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
         <p id="film-title" class="film-info">${animation.title} </p>
         <p class="film-info"> ${animation.release_date}</p>
+        <button class="more" id="${index}">More</button>
         </div>
+
         `
     )
     .join("");
+    const closeButton = document.querySelector(".more");
+    closeButton.addEventListener("click", () => {
+    alert('xuxu');
+    });
+    
 }
 
 // INICIO DA IDEIA DE CALCULO AGREGADO
-// STATUS: PAROU DE FUNCIONAR
+// STATUS: FUNCIONA
 // SUGESTAO PRECISA IR UM PEDAÇO PRA DATA.JS
 function createElement() {
-  alert('DODO');
-  // console.log('JSS');
-  // const parentDiv = document.querySelector(".bottom-info");
-  // const childDiv = document.querySelector(".filter-type");
-  // const animationsTotal = document.createElement("div");
-  // animationsTotal.classList.add("list-container");
-  // animationsTotal.innerHTML =
-  //   "Total number of animations produced by Studio Ghibli: " + allAnimations.length;
-  // parentDiv.insertBefore(animationsTotal, childDiv);
+  
+  const parentDiv = document.querySelector(".bottom-info");
+  const childDiv = document.querySelector(".filter-type");
+  const animationsTotal = document.createElement("div");
+  animationsTotal.classList.add("list-container");
+  animationsTotal.innerHTML =
+    "Total number of animations produced by Studio Ghibli: " + allAnimations.length;
+  parentDiv.insertBefore(animationsTotal, childDiv);
 }
 
 createElement();
@@ -204,4 +170,37 @@ function searchFilms() {
 
     //console.log(cards);
   }
+}
+
+// NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
+function showCharactersByFilm(index) {
+  const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);  
+ 
+  const parentDiv = document.querySelector(".bottom-info");  
+  const animationsTotal = document.createElement("div");
+  animationsTotal.classList.add("list-container");
+  animationsTotal.innerHTML = `<button id="back-button">Go Back</button>`;
+
+  parentDiv.appendChild(animationsTotal);
+  const backButton = document.querySelector("#back-button");
+  backButton.addEventListener("click", () => {
+    history.pushState(null, null, document.referrer);
+    window.location.reload();
+  });
+
+  const animationCardsHTML = charactersByFilm
+    .map((element) => {
+      return `
+      
+        <div class="cards">
+        <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
+          <p id="film-title" class="film-info">${element.name}</p>
+          <p class="film-info">${element.gender}</p>
+          <button class="more" id="${index}">More</button>
+        </div>
+      `;
+    })
+    .join("");
+
+  animationCards.innerHTML = animationCardsHTML;
 }
