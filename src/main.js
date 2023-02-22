@@ -140,10 +140,10 @@ function showFilmsAlphabeticalOrder(alphabeticalFilter) {
         `
     )
     .join("");
-    const closeButton = document.querySelector(".more");
-    closeButton.addEventListener("click", () => {
+  const closeButton = document.querySelector(".more");
+  closeButton.addEventListener("click", () => {
     alert('xuxu');
-    });
+  });
     
 }
 
