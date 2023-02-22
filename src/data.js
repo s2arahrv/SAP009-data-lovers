@@ -14,6 +14,8 @@ export const films = {
   filterCharacterByFilm: function filterCharacterByFilm (dataFilms, index)
   {
     const dataFilmsCopy = [...dataFilms];
+    // console.log(dataFilmsCopy[index].people);
+    //    console.log(dataFilmsCopy[index].people);
     return dataFilmsCopy[index].people;
     
   }

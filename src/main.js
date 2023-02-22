@@ -17,12 +17,6 @@ document.querySelector(".animation-cards").innerHTML =
 
 const modal_container = document.getElementById("modal-wrapper");
 
-const close = document.getElementById("close");
-close.addEventListener("click", () => {
-  alert("click");
-  modal_container.classList.remove("show");
-});
-
 const images = document.querySelectorAll(".posters");
 images.forEach((img) => {
   img.addEventListener("click", function () {
@@ -47,13 +41,33 @@ more.addEventListener("click", () => {
   films.charactersFilteredByFilm(allAnimations[0].people);
 });
 
+
 // NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
 function showCharactersByFilm(index) {
   const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);  
  
+  //BOTAO VOLTAR 
+  //STATUS: NAO FUNCIONA
+
+  const parentDiv = document.querySelector(".bottom-info");
+  
+  const animationsTotal = document.createElement("div");
+  animationsTotal.classList.add("list-container");
+  animationsTotal.innerHTML = `<button id="baba" onclick="goBack()">Go Back</button>`;
+    
+  
+  parentDiv.appendChild(animationsTotal);
+  const baba = document.querySelector("#baba");
+  baba.addEventListener("click", () => {
+    history.pushState(null, null, document.referrer);
+    window.location.reload();
+  });
+
+
   const animationCardsHTML = charactersByFilm
     .map((element) => {
       return `
+      
         <div class="cards">
         <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
           <p id="film-title" class="film-info">${element.name}</p>
@@ -70,6 +84,7 @@ function showCharactersByFilm(index) {
 
 //ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
 function showDescription(index) {
+  alert('gaga');
   const teste = allAnimations[index];
   data.films[0];
   const t = document.getElementById("modal-container");
