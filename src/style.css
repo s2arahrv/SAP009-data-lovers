@@ -71,6 +71,10 @@ main {
  
 }
 
+.buttons {
+  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
+}
+
 .top-info {
   display: flex;
   flex-direction: row;
@@ -100,7 +104,6 @@ main {
   padding: 0.5rem;
   outline: none;
   font-size: 1.5rem;
-  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
   height: 4rem;
   margin-left: 3rem;  
 }
@@ -113,7 +116,6 @@ main {
   background-color: #ECD89A;
   border: none;  
   font-size: 1.5rem;
-  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
   border-radius: 1rem;
   border: none;
   height: 4rem;
@@ -209,11 +211,68 @@ footer {
 
 }
 .modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: #fff;
   width: 60rem;
-  height: 50rem;
+  height: 42rem;
   border-radius: 1rem;
-  max-width: 100%;
+  overflow: auto;
+}
+@media screen and (max-width: 600px) {
+  .modal {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    align-items: center;
+    width: 42rem;
+  }
+}
+
+.modal-title {
+  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
+  color: #288A99;
+  font-weight: bold;
+  font-size: 1.7rem;
+  text-align: center;
+  padding-bottom: 0.5rem;
+}
+
+.modal-side {
+  position: relative;
+  padding: 2rem;
+}
+
+.more-info-bts {
+  background-color: #93C4CE;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  height: 2.5rem;
+  padding: 0.6rem 1.5rem;
+  margin: 0.2rem;
+}
+
+.more-info-bts:active, #close:active {
+  background-color: #EFBCAF;
+  color: #fff;
+}
+
+.more-info {
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+}
+
+#close {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #94C5CC;
+  height: 2.5rem;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  border: none;
 }
 
 .modal-wrapper.show {
