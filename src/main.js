@@ -20,7 +20,6 @@ const modal_container = document.getElementById("modal-wrapper");
 const images = document.querySelectorAll(".posters");
 images.forEach((img) => {
   img.addEventListener("click", function () {
-    alert("clickopen");
     const index = this.id;
     modal_container.classList.add("show");
     showDescription(index);
@@ -36,6 +35,14 @@ btn.forEach((bt) => {
   });
 });
 
+//const open = document.getElementById("open");
+
+// open.addEventListener("click", () => {
+//   alert('clickopen');
+//   modal_container.classList.add("show");
+// });
+
+
 // const more = document.querySelectorAll(".more");
 // more.addEventListener("click", () => {
 //   alert('1hshs')
@@ -48,19 +55,28 @@ function showDescription(index) {
   const teste = allAnimations[index];
   data.films[0];
   const t = document.getElementById("modal-container");
-  t.innerHTML = `
-  <div class="modal-container">
+  t.innerHTML =  `
+  <div class="modal">
+  <div class="modal-side">
   <img id="${index}" class="posters" src="${teste.poster}" alt="Pôster de ${teste.title}">
-  <p id="film-title" class="film-info">${teste.description} </p>
-  <p class="film-info"> ${teste.producer}</p>
-  <button class="buttons" id="close">Close Me</button>
+  <p class="modal-title">${teste.title}</p>
+  <p class="film-info">Director: ${teste.director}<br>Producer: ${teste.producer}<br>Release: ${teste.release_date}<br>RT Score: ${teste.rt_score}</p>
   </div>
+  <div class="modal-side">
+  <p class="modal-title">Synopsis</p>
+  <p class="film-info">${teste.description}</p>
+  <p class="more-info">For more information:</p>
+  <button class="buttons more-info-bts">Characters</button>
+  <button class="buttons more-info-bts">Locations</button>
+  <button class="buttons more-info-bts">Vehicles</button>
+  <button class="buttons" id="close">Go back</button>
+  </div>
+  </div>`
 
-  `;
   modal_container.classList.add("show");
 
-  const closeButton = document.querySelector(".modal-container #close");
-  closeButton.addEventListener("click", () => {
+  const close = document.getElementById("close");
+  close.addEventListener("click", () => {
     modal_container.classList.remove("show");
   });
 }
