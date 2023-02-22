@@ -41,8 +41,8 @@ header {
   align-items: flex-end;
   background-image: linear-gradient(
     120deg,
-    #eeb7aa 20%,
-    #edd79d 40%,
+    #c8e1e4 20%,
+    #fcf8ee 40%,
     #c8e1e4 100%
   );
 }
@@ -69,10 +69,6 @@ main {
   overflow: auto;
   font-size: 1.6rem;
  
-}
-
-.buttons {
-  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
 }
 
 .top-info {
@@ -104,6 +100,7 @@ main {
   padding: 0.5rem;
   outline: none;
   font-size: 1.5rem;
+  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
   height: 4rem;
   margin-left: 3rem;  
 }
@@ -116,6 +113,7 @@ main {
   background-color: #ECD89A;
   border: none;  
   font-size: 1.5rem;
+  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
   border-radius: 1rem;
   border: none;
   height: 4rem;
@@ -164,6 +162,25 @@ main {
   align-items: center;
   padding-top: 1.4rem;
   padding-bottom: 1rem; 
+
+}
+
+.hidden {
+  display: none;
+}
+
+.cards1 {
+  position: fixed;
+  background-color: #ECD89A;
+  border-radius: 1rem;
+  width: 55rem;
+  height: 36rem;
+  margin: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.4rem;
+  padding-bottom: 1rem; 
+  
 }
 
 .cards:hover{
@@ -190,92 +207,3 @@ footer {
   width: 100%;
 }
 
-#modal-wrapper {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-#modal-wrapper.show {
-  opacity: 1;
-  pointer-events: auto;
-
-}
-.modal {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #fff;
-  width: 60rem;
-  height: 42rem;
-  border-radius: 1rem;
-  overflow: auto;
-}
-@media screen and (max-width: 600px) {
-  .modal {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    align-items: center;
-    width: 42rem;
-  }
-}
-
-.modal-title {
-  font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
-  color: #288A99;
-  font-weight: bold;
-  font-size: 1.7rem;
-  text-align: center;
-  padding-bottom: 0.5rem;
-}
-
-.modal-side {
-  position: relative;
-  padding: 2rem;
-}
-
-.more-info-bts {
-  background-color: #93C4CE;
-  font-size: 1.5rem;
-  border-radius: 0.5rem;
-  border: none;
-  height: 2.5rem;
-  padding: 0.6rem 1.5rem;
-  margin: 0.2rem;
-}
-
-.more-info-bts:active, #close:active {
-  background-color: #EFBCAF;
-  color: #fff;
-}
-
-.more-info {
-  margin-top: 1.5rem;
-  padding: 0.5rem;
-}
-
-#close {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background-color: #94C5CC;
-  height: 2.5rem;
-  padding: 0.6rem;
-  border-radius: 0.5rem;
-  border: none;
-}
-
-.modal-wrapper.show {
-  opacity: 1;
-  pointer-events: auto;
-}

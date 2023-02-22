@@ -1,23 +1,54 @@
-import { example, anotherExample } from '../src/data.js';
+import { films } from '../src/data.js';
 
+const inputOriginal = [
+  { title: 'hope', year: 2023 },
+  { title: 'chaos', year: 2018 },
+  { title: 'star', year: 2003 },
+  { title: 'coup', year: 2016 },
+];
 
-describe('example', () => {
+const outputAlphabetical = [
+  { title: 'chaos', year: 2018 },
+  { title: 'coup', year: 2016 },
+  { title: 'hope', year: 2023 },
+  { title: 'star', year: 2003 },
+];
+
+const outputInverseAlphabetical = [
+  { title: 'star', year: 2003 },
+  { title: 'hope', year: 2023 },
+  { title: 'coup', year: 2016 },
+  { title: 'chaos', year: 2018 },
+];
+
+describe('films', () => {
+  it('is a object', () => {
+    expect(typeof films).toBe('object');
+  })});
+
+describe('films.alphabeticOrderFilter', () => {
   it('is a function', () => {
-    expect(typeof example).toBe('function');
+    expect(typeof films.alphabeticOrderFilter).toBe('function');
   });
 
-  it('returns `example`', () => {
-    expect(example()).toBe('example');
+  it('returns an array in alphabetical order by title', () => {
+    expect(films.alphabeticOrderFilter(inputOriginal)).toEqual(outputAlphabetical);
   });
 });
 
-
-describe('anotherExample', () => {
+describe('films.inverseAlphabeticOrderFilter', () => {
   it('is a function', () => {
-    expect(typeof anotherExample).toBe('function');
+    expect(typeof films.inverseAlphabeticOrderFilter).toBe('function');
   });
 
-  it('returns `anotherExample`', () => {
-    expect(anotherExample()).toBe('OMG');
+  it('returns an array in inverse alphabetical order by title', () => { 
+    expect(films.inverseAlphabeticOrderFilter(inputOriginal)).toEqual(outputInverseAlphabetical);
   });
 });
+
+describe('films.searchFilms', () => {
+  it('is a function', () => {
+    expect(typeof films.searchFilms).toBe('function');
+  });
+});
+
