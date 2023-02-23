@@ -15,5 +15,11 @@ export const films = {
   {
     const dataFilmsCopy = [...dataFilms];
     return dataFilmsCopy[index].people;   
+  },
+
+  filterVehiclesByFilm: function filterVehiclesByFilm (dataFilms, index)
+  {
+    const dataFilmsCopy = [...dataFilms];
+    return dataFilmsCopy[index].vehicles;   
   }
 };

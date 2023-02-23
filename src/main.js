@@ -62,7 +62,7 @@ function showDescription(index) {
   <p class="more-info">For more information:</p>
   <button class="buttons more-info-bts" id="characters-button-${index}">Characters</button>
   <button class="buttons more-info-bts">Locations</button>
-  <button class="buttons more-info-bts">Vehicles</button>
+  <button class="buttons more-info-bts" id="vehicles-button-${index}">Vehicles</button>
   <button class="buttons" id="close">Go back</button>
   </div>
   </div>`;
@@ -75,12 +75,21 @@ function showDescription(index) {
   });
 
   const characterButton = document.getElementById("characters-button-" + index);
+  const vehiclesButton = document.getElementById("vehicles-button-" + index);
 
   characterButton.addEventListener("click", function () {
     const characterButtonId = this.id;
     const index = characterButtonId.split("-").pop();
     modal_container.classList.remove("show");
     showCharactersByFilm(index);
+  });
+
+  
+  vehiclesButton.addEventListener("click", function () {
+    const vehiclesButtonId = this.id;
+    const index = vehiclesButtonId.split("-").pop();
+    modal_container.classList.remove("show");
+    showVehiclesByFilm(index);
   });
 }
 
@@ -201,4 +210,41 @@ function showCharactersByFilm(index) {
     .join("");
 
   animationCards.innerHTML = charactersAnimationCards;
+}
+
+
+// NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
+// PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
+function showVehiclesByFilm(index) {
+  const vehiclesByFilm = films.filterVehiclesByFilm(allAnimations, index);
+
+  const parentDiv = document.querySelector(".bottom-info");
+  const divBackButton = document.createElement("div");
+  divBackButton.classList.add("list-container");
+  divBackButton.innerHTML = `<button id="back-button">Go Back</button>`;
+  parentDiv.appendChild(divBackButton);
+
+  const backButton = document.querySelector("#back-button");
+  backButton.addEventListener("click", () => {
+    history.pushState(null, null, document.referrer);
+    window.location.reload();
+  });
+
+  const vehiclesAnimationCards = vehiclesByFilm
+    .map((element) => {
+      return `
+      
+        <div class="cards">
+        <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
+          <p id="film-title" class="film-info">${element.name}</p>
+          <p class="film-info">${element.description}</p>
+          <p class="film-info">${element.vehicle_class}</p>
+          <p class="film-info">${element.length}</p>
+          
+        </div>
+      `;
+    })
+    .join("");
+
+  animationCards.innerHTML = vehiclesAnimationCards;
 }
