@@ -6,19 +6,20 @@ const allAnimations = data.films;
 const filterButton = document.getElementById("filter-button");
 filterButton.addEventListener("click", defineAlphabeticalFilter);
 
-const filterType = document.getElementById("label-filter-type");
+const filterTypeLabel = document.getElementById("label-filter-type");
 
-const inputArea = document.getElementById("filter-name-input");
-inputArea.addEventListener("keyup", searchFilms);
+const searchInput = document.getElementById("filter-name-input");
+searchInput.addEventListener("keyup", searchFilms);
 
 const animationCards = document.querySelector(".animation-cards");
+
 document.querySelector(".animation-cards").innerHTML =
   showAnimations(allAnimations);
 
 const modal_container = document.getElementById("modal-wrapper");
 
-const images = document.querySelectorAll(".posters");
-images.forEach((img) => {
+const posterImage = document.querySelectorAll(".posters");
+posterImage.forEach((img) => {
   img.addEventListener("click", function () {
     const index = this.id;
     modal_container.classList.add("show");
@@ -26,65 +27,10 @@ images.forEach((img) => {
   });
 });
 
-const btn = document.querySelectorAll(".more");
-btn.forEach((bt) => {
-  bt.addEventListener("click", function () {
-    const index = this.id;
-    console.log(index);
-    showCharactersByFilm(index);
-  });
-});
+// MOSTRA TODAS AS ANIMACOES LOGO QUE ABRE
 
-//const open = document.getElementById("open");
-
-// open.addEventListener("click", () => {
-//   alert('clickopen');
-//   modal_container.classList.add("show");
-// });
-
-
-// const more = document.querySelectorAll(".more");
-// more.addEventListener("click", () => {
-//   alert('1hshs')
-//   films.charactersFilteredByFilm(allAnimations[0].people);
-// });
-
-//ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
-function showDescription(index) {
-  
-  const teste = allAnimations[index];
-  data.films[0];
-  const t = document.getElementById("modal-container");
-  t.innerHTML =  `
-  <div class="modal">
-  <div class="modal-side">
-  <img id="${index}" class="posters" src="${teste.poster}" alt="Pôster de ${teste.title}">
-  <p class="modal-title">${teste.title}</p>
-  <p class="film-info">Director: ${teste.director}<br>Producer: ${teste.producer}<br>Release: ${teste.release_date}<br>RT Score: ${teste.rt_score}</p>
-  </div>
-  <div class="modal-side">
-  <p class="modal-title">Synopsis</p>
-  <p class="film-info">${teste.description}</p>
-  <p class="more-info">For more information:</p>
-  <button class="buttons more-info-bts">Characters</button>
-  <button class="buttons more-info-bts">Locations</button>
-  <button class="buttons more-info-bts">Vehicles</button>
-  <button class="buttons" id="close">Go back</button>
-  </div>
-  </div>`
-
-  modal_container.classList.add("show");
-
-  const close = document.getElementById("close");
-  close.addEventListener("click", () => {
-    modal_container.classList.remove("show");
-  });
-}
-
-
-// MOSTRA TODAS AS ANIMACOES LOGO QUE ABRE 
-// STATUS: SEM MODAL
 function showAnimations(allAnimations) {
+  console.log(allAnimations);
   return allAnimations
     .map(
       (animation, index) =>
@@ -93,13 +39,50 @@ function showAnimations(allAnimations) {
       <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
       <p id="film-title" class="film-info">${animation.title} </p>
       <p class="film-info"> ${animation.release_date}</p>
-      <button class="more" id="${index}">More</button>
       </div>
       `
     )
     .join("");
 }
 
+//ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
+function showDescription(index) {
+  const chosenAnimation = allAnimations[index];
+  const modalContainer = document.getElementById("modal-container");
+  modalContainer.innerHTML = `
+  <div class="modal">
+  <div class="modal-side">
+  <img id="${index}" class="posters" src="${chosenAnimation.poster}" alt="Pôster de ${chosenAnimation.title}">
+  <p class="modal-title">${chosenAnimation.title}</p>
+  <p class="film-info">Director: ${chosenAnimation.director}<br>Producer: ${chosenAnimation.producer}<br>Release: ${chosenAnimation.release_date}<br>RT Score: ${chosenAnimation.rt_score}</p>
+  </div>
+  <div class="modal-side">
+  <p class="modal-title">Synopsis</p>
+  <p class="film-info">${chosenAnimation.description}</p>
+  <p class="more-info">For more information:</p>
+  <button class="buttons more-info-bts" id="characters-button-${index}">Characters</button>
+  <button class="buttons more-info-bts">Locations</button>
+  <button class="buttons more-info-bts">Vehicles</button>
+  <button class="buttons" id="close">Go back</button>
+  </div>
+  </div>`;
+
+  modal_container.classList.add("show");
+
+  const close = document.getElementById("close");
+  close.addEventListener("click", () => {
+    modal_container.classList.remove("show");
+  });
+
+  const characterButton = document.getElementById("characters-button-" + index);
+
+  characterButton.addEventListener("click", function () {
+    const characterButtonId = this.id;
+    const index = characterButtonId.split("-").pop();
+    modal_container.classList.remove("show");
+    showCharactersByFilm(index);
+  });
+}
 
 //essa função pode ser mudada para receber diferentes filtros e passar pra
 //proxima funcao de exibição
@@ -111,17 +94,17 @@ function defineAlphabeticalFilter(event) {
     alphabeticalFilter = films.alphabeticOrderFilter(allAnimations);
     filterButton.value = "Show films from Z - A";
 
-    filterType.innerHTML = "A - Z";
-    filterType.innerHTML = "Animations from A - Z";
+    filterTypeLabel.innerHTML = "A - Z";
+    filterTypeLabel.innerHTML = "Animations from A - Z";
   } else if (filterButton.value === "Show films from Z - A") {
     alphabeticalFilter = films.inverseAlphabeticOrderFilter(allAnimations);
     filterButton.value = "Show films from A - Z";
-    filterType.innerHTML = "Animations from Z - A";
+    filterTypeLabel.innerHTML = "Animations from Z - A";
   }
   showFilmsAlphabeticalOrder(alphabeticalFilter);
 }
 
-// MOSTRA TODAS AS ANIMACOES LOGO QUE CLICA NO FILTRO A-Z 
+// MOSTRA TODAS AS ANIMACOES LOGO QUE CLICA NO FILTRO A-Z
 // STATUS: SEM MODAL
 // SUGESTAO - FUNDIR FUNCAO COM SHOWALLANIMATIONS
 
@@ -134,35 +117,33 @@ function showFilmsAlphabeticalOrder(alphabeticalFilter) {
         <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
         <p id="film-title" class="film-info">${animation.title} </p>
         <p class="film-info"> ${animation.release_date}</p>
-        <button class="more" id="${index}">More</button>
+        
         </div>
 
         `
     )
     .join("");
-    const closeButton = document.querySelector(".more");
-    closeButton.addEventListener("click", () => {
-    alert('xuxu');
-    });
-    
+  const closeButton = document.querySelector(".more");
+  closeButton.addEventListener("click", () => {
+    alert("xuxu");
+  });
 }
 
 // INICIO DA IDEIA DE CALCULO AGREGADO
 // STATUS: FUNCIONA
-// SUGESTAO PRECISA IR UM PEDAÇO PRA DATA.JS
+// SUGESTAO PRECISA IR UM PEDAÇO PRA DATA.JS / pode ser chamada por eventlistener (aí tirar linha 151))
 function createElement() {
-  
   const parentDiv = document.querySelector(".bottom-info");
   const childDiv = document.querySelector(".filter-type");
   const animationsTotal = document.createElement("div");
   animationsTotal.classList.add("list-container");
   animationsTotal.innerHTML =
-    "Total number of animations produced by Studio Ghibli: " + allAnimations.length;
+    "Total number of animations produced by Studio Ghibli: " +
+    allAnimations.length;
   parentDiv.insertBefore(animationsTotal, childDiv);
 }
 
 createElement();
-
 
 function searchFilms() {
   const input = document
@@ -189,22 +170,23 @@ function searchFilms() {
 }
 
 // NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
+// PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
 function showCharactersByFilm(index) {
-  const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);  
- 
-  const parentDiv = document.querySelector(".bottom-info");  
-  const animationsTotal = document.createElement("div");
-  animationsTotal.classList.add("list-container");
-  animationsTotal.innerHTML = `<button id="back-button">Go Back</button>`;
+  const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);
 
-  parentDiv.appendChild(animationsTotal);
+  const parentDiv = document.querySelector(".bottom-info");
+  const divBackButton = document.createElement("div");
+  divBackButton.classList.add("list-container");
+  divBackButton.innerHTML = `<button id="back-button">Go Back</button>`;
+  parentDiv.appendChild(divBackButton);
+
   const backButton = document.querySelector("#back-button");
   backButton.addEventListener("click", () => {
     history.pushState(null, null, document.referrer);
     window.location.reload();
   });
 
-  const animationCardsHTML = charactersByFilm
+  const charactersAnimationCards = charactersByFilm
     .map((element) => {
       return `
       
@@ -212,11 +194,11 @@ function showCharactersByFilm(index) {
         <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
           <p id="film-title" class="film-info">${element.name}</p>
           <p class="film-info">${element.gender}</p>
-          <button class="more" id="${index}">More</button>
+          
         </div>
       `;
     })
     .join("");
 
-  animationCards.innerHTML = animationCardsHTML;
+  animationCards.innerHTML = charactersAnimationCards;
 }
