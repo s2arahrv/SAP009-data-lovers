@@ -172,6 +172,7 @@ main {
 }
 
 .posters {
+  object-fit: cover;
   width: 20rem;
   height: 28rem;
   padding-bottom: 1rem;

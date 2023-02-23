@@ -35,6 +35,15 @@ btn.forEach((bt) => {
   });
 });
 
+const btnLocation = document.querySelectorAll(".more2");
+btnLocation.forEach((bt) => {
+  bt.addEventListener("click", function () {
+    const index = this.id;
+    console.log(index);
+    showLocationByFilm(index);
+  });
+});
+
 //const open = document.getElementById("open");
 
 // open.addEventListener("click", () => {
@@ -94,6 +103,7 @@ function showAnimations(allAnimations) {
       <p id="film-title" class="film-info">${animation.title} </p>
       <p class="film-info"> ${animation.release_date}</p>
       <button class="more" id="${index}">More</button>
+      <button class="more2" id="${index}">More2</button>
       </div>
       `
     )
@@ -135,6 +145,7 @@ function showFilmsAlphabeticalOrder(alphabeticalFilter) {
         <p id="film-title" class="film-info">${animation.title} </p>
         <p class="film-info"> ${animation.release_date}</p>
         <button class="more" id="${index}">More</button>
+        <button class="more2" id="${index}">More2</button>
         </div>
 
         `
@@ -213,6 +224,7 @@ function showCharactersByFilm(index) {
           <p id="film-title" class="film-info">${element.name}</p>
           <p class="film-info">${element.gender}</p>
           <button class="more" id="${index}">More</button>
+          <button class="more2" id="${index}">More2</button>
         </div>
       `;
     })
@@ -220,3 +232,33 @@ function showCharactersByFilm(index) {
 
   animationCards.innerHTML = animationCardsHTML;
 }
+
+function showLocationByFilm(index) {
+  const locationsByFilm = films.filterLocationByFilm(allAnimations, index);
+
+  const parentDiv = document.querySelector(".bottom-info");  
+  const animationsTotal = document.createElement("div");
+  animationsTotal.classList.add("list-container");
+  animationsTotal.innerHTML = `<button id="back-button">Go Back</button>`;
+
+  parentDiv.appendChild(animationsTotal);
+  const backButton = document.querySelector("#back-button");
+  backButton.addEventListener("click", () => {
+    history.pushState(null, null, document.referrer);
+    window.location.reload();
+  });
+
+  const animationCardsLocation = locationsByFilm
+    .map((element) => { 
+      return `
+    <div class="cards">
+    <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
+    <p id="film-title" class="film-info">${element.name}</p>
+    <p class="film-info">Climate: ${element.climate}<br>Terrain: ${element.terrain}<br>Surface water: ${element.surface_water}</p>
+    </div>
+    `;
+    })
+    .join("");
+
+  animationCards.innerHTML = animationCardsLocation;
+} 
