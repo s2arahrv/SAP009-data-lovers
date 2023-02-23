@@ -27,7 +27,14 @@ posterImage.forEach((img) => {
   });
 });
 
-// MOSTRA TODAS AS ANIMACOES LOGO QUE ABRE
+const btn = document.querySelectorAll(".more");
+btn.forEach((bt) => {
+  bt.addEventListener("click", function () {
+    const index = this.id;
+    console.log(index);
+    showCharactersByFilm(index);
+  });
+});
 
 function showAnimations(allAnimations) {
   console.log(allAnimations);
@@ -83,15 +90,25 @@ function showDescription(index) {
     modal_container.classList.remove("show");
     showCharactersByFilm(index);
   });
-
-  
-  vehiclesButton.addEventListener("click", function () {
-    const vehiclesButtonId = this.id;
-    const index = vehiclesButtonId.split("-").pop();
-    modal_container.classList.remove("show");
-    showVehiclesByFilm(index);
-  });
 }
+
+// MOSTRA TODAS AS ANIMACOES LOGO QUE ABRE 
+// STATUS: SEM MODAL
+// function showAnimations(allAnimations) {
+//   return allAnimations
+//     .map(
+//       (animation, index) =>
+//         `
+//       <div class="cards">
+//       <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
+//       <p id="film-title" class="film-info">${animation.title} </p>
+//       <p class="film-info"> ${animation.release_date}</p>
+//       <button class="more" id="${index}">More</button>
+//       </div>
+//       `
+//     )
+//     .join("");
+// }
 
 //essa função pode ser mudada para receber diferentes filtros e passar pra
 //proxima funcao de exibição
@@ -126,16 +143,17 @@ function showFilmsAlphabeticalOrder(alphabeticalFilter) {
         <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
         <p id="film-title" class="film-info">${animation.title} </p>
         <p class="film-info"> ${animation.release_date}</p>
-        
+        <button class="more" id="${index}">More</button>
         </div>
 
         `
     )
     .join("");
-  const closeButton = document.querySelector(".more");
-  closeButton.addEventListener("click", () => {
-    alert("xuxu");
-  });
+    const closeButton = document.querySelector(".more");
+    closeButton.addEventListener("click", () => {
+    alert('xuxu');
+    });
+    
 }
 
 // INICIO DA IDEIA DE CALCULO AGREGADO
@@ -203,7 +221,7 @@ function showCharactersByFilm(index) {
         <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
           <p id="film-title" class="film-info">${element.name}</p>
           <p class="film-info">${element.gender}</p>
-          
+          <button class="more" id="${index}">More</button>
         </div>
       `;
     })
@@ -211,6 +229,36 @@ function showCharactersByFilm(index) {
 
   animationCards.innerHTML = charactersAnimationCards;
 }
+
+function showLocationByFilm(index) {
+  const locationsByFilm = films.filterLocationByFilm(allAnimations, index);
+
+  const parentDiv = document.querySelector(".bottom-info");  
+  const animationsTotal = document.createElement("div");
+  animationsTotal.classList.add("list-container");
+  animationsTotal.innerHTML = `<button id="back-button">Go Back</button>`;
+
+  parentDiv.appendChild(animationsTotal);
+  const backButton = document.querySelector("#back-button");
+  backButton.addEventListener("click", () => {
+    history.pushState(null, null, document.referrer);
+    window.location.reload();
+  });
+
+  const animationCardsLocation = locationsByFilm
+    .map((element) => { 
+      return `
+    <div class="cards">
+    <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
+    <p id="film-title" class="film-info">${element.name}</p>
+    <p class="film-info">Climate: ${element.climate}<br>Terrain: ${element.terrain}<br>Surface water: ${element.surface_water}</p>
+    </div>
+    `;
+    })
+    .join("");
+
+  animationCards.innerHTML = animationCardsLocation;
+} 
 
 
 // NOVA FUNCAO DE FILTRO DE VEÍCULOS POR FILME
