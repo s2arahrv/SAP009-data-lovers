@@ -213,7 +213,7 @@ function showCharactersByFilm(index) {
 }
 
 
-// NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
+// NOVA FUNCAO DE FILTRO DE VEÍCULOS POR FILME
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
 function showVehiclesByFilm(index) {
   const vehiclesByFilm = films.filterVehiclesByFilm(allAnimations, index);
