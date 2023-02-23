@@ -68,7 +68,7 @@ function showDescription(index) {
   <p class="film-info">${chosenAnimation.description}</p>
   <p class="more-info">For more information:</p>
   <button class="buttons more-info-bts" id="characters-button-${index}">Characters</button>
-  <button class="buttons more-info-bts">Locations</button>
+  <button class="buttons more-info-bts" id="location-button-${index}">Locations</button>
   <button class="buttons more-info-bts" id="vehicles-button-${index}">Vehicles</button>
   <button class="buttons" id="close">Go back</button>
   </div>
@@ -81,14 +81,29 @@ function showDescription(index) {
     modal_container.classList.remove("show");
   });
 
+  const locationButton = document.getElementById("location-button-" + index);
   const characterButton = document.getElementById("characters-button-" + index);
   const vehiclesButton = document.getElementById("vehicles-button-" + index);
+
+  locationButton.addEventListener("click", function () {
+    const locationButtonId = this.id;
+    const index = locationButtonId.split("-").pop();
+    modal_container.classList.remove("show");
+    showLocationByFilm(index);
+  });
 
   characterButton.addEventListener("click", function () {
     const characterButtonId = this.id;
     const index = characterButtonId.split("-").pop();
     modal_container.classList.remove("show");
     showCharactersByFilm(index);
+  });
+
+  vehiclesButton.addEventListener("click", function () {
+    const vehiclesButtonId = this.id;
+    const index = vehiclesButtonId.split("-").pop();
+    modal_container.classList.remove("show");
+    showVehiclesByFilm(index);
   });
 }
 
@@ -149,10 +164,10 @@ function showFilmsAlphabeticalOrder(alphabeticalFilter) {
         `
     )
     .join("");
-    const closeButton = document.querySelector(".more");
-    closeButton.addEventListener("click", () => {
+  const closeButton = document.querySelector(".more");
+  closeButton.addEventListener("click", () => {
     alert('xuxu');
-    });
+  });
     
 }
 
