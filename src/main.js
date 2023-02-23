@@ -90,6 +90,13 @@ function showDescription(index) {
     modal_container.classList.remove("show");
     showCharactersByFilm(index);
   });
+
+  vehiclesButton.addEventListener("click", function () {
+    const vehiclesButtonId = this.id;
+    const index = vehiclesButtonId.split("-").pop();
+    modal_container.classList.remove("show");
+    showVehiclesByFilm(index);
+  });
 }
 
 // MOSTRA TODAS AS ANIMACOES LOGO QUE ABRE 
