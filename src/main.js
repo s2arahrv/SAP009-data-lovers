@@ -36,9 +36,11 @@ btn.forEach((bt) => {
   });
 });
 
-function showAnimations(allAnimations) {
-  console.log(allAnimations);
-  return allAnimations
+showAnimations(allAnimations);
+
+function showAnimations(animationArray) {
+  const dataList = animationArray;
+  const animationData =  dataList
     .map(
       (animation, index) =>
         `
@@ -50,6 +52,17 @@ function showAnimations(allAnimations) {
       `
     )
     .join("");
+
+    animationCards.innerHTML = animationData;
+
+    const posterImage = document.querySelectorAll(".posters");
+posterImage.forEach((img) => {
+  img.addEventListener("click", function () {
+    const index = this.id;
+    modal_container.classList.add("show");
+    showDescription(index);
+  });
+});
 }
 
 //ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
@@ -99,23 +112,6 @@ function showDescription(index) {
   });
 }
 
-// MOSTRA TODAS AS ANIMACOES LOGO QUE ABRE 
-// STATUS: SEM MODAL
-// function showAnimations(allAnimations) {
-//   return allAnimations
-//     .map(
-//       (animation, index) =>
-//         `
-//       <div class="cards">
-//       <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
-//       <p id="film-title" class="film-info">${animation.title} </p>
-//       <p class="film-info"> ${animation.release_date}</p>
-//       <button class="more" id="${index}">More</button>
-//       </div>
-//       `
-//     )
-//     .join("");
-// }
 
 //essa função pode ser mudada para receber diferentes filtros e passar pra
 //proxima funcao de exibição
@@ -134,34 +130,30 @@ function defineAlphabeticalFilter(event) {
     filterButton.value = "Show films from A - Z";
     filterTypeLabel.innerHTML = "Animations from Z - A";
   }
-  showFilmsAlphabeticalOrder(alphabeticalFilter);
+  showAnimations(alphabeticalFilter);
 }
 
 // MOSTRA TODAS AS ANIMACOES LOGO QUE CLICA NO FILTRO A-Z
-// STATUS: SEM MODAL
-// SUGESTAO - FUNDIR FUNCAO COM SHOWALLANIMATIONS
+// STATUS: FUNDIDA COM SHOWANIMATIONS
 
-function showFilmsAlphabeticalOrder(alphabeticalFilter) {
-  animationCards.innerHTML = alphabeticalFilter
-    .map(
-      (animation, index) =>
-        `
-        <div class="cards">
-        <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
-        <p id="film-title" class="film-info">${animation.title} </p>
-        <p class="film-info"> ${animation.release_date}</p>
-        <button class="more" id="${index}">More</button>
-        </div>
 
-        `
-    )
-    .join("");
-    const closeButton = document.querySelector(".more");
-    closeButton.addEventListener("click", () => {
-    alert('xuxu');
-    });
-    
-}
+// function showFilmsAlphabeticalOrder(alphabeticalFilter) {
+//   animationCards.innerHTML = alphabeticalFilter
+//     .map(
+//       (animation, index) =>
+//         `
+//         <div class="cards">
+//         <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
+//         <p id="film-title" class="film-info">${animation.title} </p>
+//         <p class="film-info"> ${animation.release_date}</p>
+//         <button class="more" id="${index}">More</button>
+//         </div>
+
+//         `
+//     )
+//     .join("");
+//        
+// }
 
 // INICIO DA IDEIA DE CALCULO AGREGADO
 // STATUS: FUNCIONA
