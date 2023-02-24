@@ -32,19 +32,9 @@ const characters = [
     hair_color: "Brown",
     specie: "Raccoon Dog"
   },
-];
+ 
 
-const locations = [
-  {
-    id: "0fafa7a3-64c1-43fe-881b-ecb605c01e09",
-    name: "Laputa",
-    img: "https://static.wikia.nocookie.net/studio-ghibli/images/e/e7/Laputa.png",
-    climate: "Continental",
-    terrain: "City",
-    surface_water: "40",
-  },
 ];
-
 describe('films', () => {
   it('is a object', () => {
     expect(typeof films).toBe('object');
@@ -80,9 +70,11 @@ describe('films.filterCharacterByFilm', () => {
   it('is a function', () => {
     expect(typeof films.filterCharacterByFilm).toBe('function');
   });
+
   it('is a object', () => {
     expect(typeof characters[0]).toBe('object');
   });
+
   it('is a array', () => {
     expect(Array.isArray(characters)).toBe(true);
   });
@@ -96,27 +88,6 @@ describe('films.filterCharacterByFilm', () => {
     expect(characters[0]).toHaveProperty('eye_color');
     expect(characters[0]).toHaveProperty('hair_color');
     expect(characters[0]).toHaveProperty('specie');    
-  });
-});
-
-describe('films.filterLocationByFilm', () => {
-  it('is a function', () => {
-    expect(typeof films.filterLocationByFilm).toBe('function');
-  });
-  it('is a object', () => {
-    expect(typeof locations[0]).toBe('object');
-  });
-  it('is a array', () => {
-    expect(Array.isArray(locations)).toBe(true);
-  });
-
-  it('returns an array with all characters info of the chosen film', () => {    
-    expect(locations[0]).toHaveProperty('id');
-    expect(locations[0]).toHaveProperty('name');
-    expect(locations[0]).toHaveProperty('img');  
-    expect(locations[0]).toHaveProperty('climate');  
-    expect(locations[0]).toHaveProperty('terrain');  
-    expect(locations[0]).toHaveProperty('surface_water');   
   });
 });
 

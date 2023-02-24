@@ -40,7 +40,7 @@ showAnimations(allAnimations);
 
 function showAnimations(animationArray) {
   const dataList = animationArray;
-  const animationData =  dataList
+  const animationData = dataList
     .map(
       (animation, index) =>
         `
@@ -53,21 +53,23 @@ function showAnimations(animationArray) {
     )
     .join("");
 
-    animationCards.innerHTML = animationData;
+  animationCards.innerHTML = animationData;
 
-    const posterImage = document.querySelectorAll(".posters");
-posterImage.forEach((img) => {
-  img.addEventListener("click", function () {
-    const index = this.id;
-    modal_container.classList.add("show");
-    showDescription(index);
+  const posterImage = document.querySelectorAll(".posters");
+  posterImage.forEach((img) => {
+    img.addEventListener("click", function () {
+      alert('modal-animation-description');
+      const index = this.id;
+      modal_container.classList.add("show");
+      showDescription(index);
+    });
   });
-});
 }
 
 //ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
 function showDescription(index) {
   const chosenAnimation = allAnimations[index];
+  console.log(chosenAnimation);
   const modalContainer = document.getElementById("modal-container");
   modalContainer.innerHTML = `
   <div class="modal">
@@ -112,13 +114,13 @@ function showDescription(index) {
   });
 }
 
-
 //essa função pode ser mudada para receber diferentes filtros e passar pra
 //proxima funcao de exibição
 
 function defineAlphabeticalFilter(event) {
   event.preventDefault();
   let alphabeticalFilter = null;
+
   if (filterButton.value === "Show films from A - Z") {
     alphabeticalFilter = films.alphabeticOrderFilter(allAnimations);
     filterButton.value = "Show films from Z - A";
@@ -136,7 +138,6 @@ function defineAlphabeticalFilter(event) {
 // MOSTRA TODAS AS ANIMACOES LOGO QUE CLICA NO FILTRO A-Z
 // STATUS: FUNDIDA COM SHOWANIMATIONS
 
-
 // function showFilmsAlphabeticalOrder(alphabeticalFilter) {
 //   animationCards.innerHTML = alphabeticalFilter
 //     .map(
@@ -152,7 +153,7 @@ function defineAlphabeticalFilter(event) {
 //         `
 //     )
 //     .join("");
-//        
+//
 // }
 
 // INICIO DA IDEIA DE CALCULO AGREGADO
@@ -227,12 +228,22 @@ function showCharactersByFilm(index) {
     .join("");
 
   animationCards.innerHTML = charactersAnimationCards;
+
+  const posterImage = document.querySelectorAll(".posters");
+  posterImage.forEach((img) => {
+    img.addEventListener("click", function () {
+      alert('modal-personagens');
+      const index = this.id;
+      modal_container.classList.add("show");
+      showDescription(index);
+    });
+  });
 }
 
 function showLocationByFilm(index) {
   const locationsByFilm = films.filterLocationByFilm(allAnimations, index);
 
-  const parentDiv = document.querySelector(".bottom-info");  
+  const parentDiv = document.querySelector(".bottom-info");
   const animationsTotal = document.createElement("div");
   animationsTotal.classList.add("list-container");
   animationsTotal.innerHTML = `<button id="back-button">Go Back</button>`;
@@ -245,7 +256,7 @@ function showLocationByFilm(index) {
   });
 
   const animationCardsLocation = locationsByFilm
-    .map((element) => { 
+    .map((element) => {
       return `
     <div class="cards">
     <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
@@ -257,8 +268,7 @@ function showLocationByFilm(index) {
     .join("");
 
   animationCards.innerHTML = animationCardsLocation;
-} 
-
+}
 
 // NOVA FUNCAO DE FILTRO DE VEÍCULOS POR FILME
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
