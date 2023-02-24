@@ -29,6 +29,23 @@ export const films = {
   {
     const dataFilmsCopy = [...dataFilms];
     return dataFilmsCopy[index].vehicles;   
+  },
+
+  filterByTitle: function filterByTitle (cards, input)
+  {
+    const filteredCards = [];
+    const searchTerm = input.toUpperCase();
+    for (let i = 0; i < cards.length; i++) {
+      const titles = cards[i].querySelector("#film-title");
+ 
+      if (titles.innerText.toUpperCase().includes(searchTerm)) {
+      //  alert('filtertitle');
+        filteredCards.push(cards[i]);
+      }
+    }
+  
+    return filteredCards;
   }
 
 };
+

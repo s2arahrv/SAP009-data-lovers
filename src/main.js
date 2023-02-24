@@ -13,9 +13,6 @@ searchInput.addEventListener("keyup", searchFilms);
 
 const animationCards = document.querySelector(".animation-cards");
 
-document.querySelector(".animation-cards").innerHTML =
-  showAnimations(allAnimations);
-
 const modal_container = document.getElementById("modal-wrapper");
 
 const posterImage = document.querySelectorAll(".posters");
@@ -24,15 +21,6 @@ posterImage.forEach((img) => {
     const index = this.id;
     modal_container.classList.add("show");
     showDescription(index);
-  });
-});
-
-const btn = document.querySelectorAll(".more");
-btn.forEach((bt) => {
-  bt.addEventListener("click", function () {
-    const index = this.id;
-    console.log(index);
-    showCharactersByFilm(index);
   });
 });
 
@@ -135,26 +123,7 @@ function defineAlphabeticalFilter(event) {
   showAnimations(alphabeticalFilter);
 }
 
-// MOSTRA TODAS AS ANIMACOES LOGO QUE CLICA NO FILTRO A-Z
-// STATUS: FUNDIDA COM SHOWANIMATIONS
-
-// function showFilmsAlphabeticalOrder(alphabeticalFilter) {
-//   animationCards.innerHTML = alphabeticalFilter
-//     .map(
-//       (animation, index) =>
-//         `
-//         <div class="cards">
-//         <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
-//         <p id="film-title" class="film-info">${animation.title} </p>
-//         <p class="film-info"> ${animation.release_date}</p>
-//         <button class="more" id="${index}">More</button>
-//         </div>
-
-//         `
-//     )
-//     .join("");
-//
-// }
+createElement();
 
 // INICIO DA IDEIA DE CALCULO AGREGADO
 // STATUS: FUNCIONA
@@ -170,29 +139,18 @@ function createElement() {
   parentDiv.insertBefore(animationsTotal, childDiv);
 }
 
-createElement();
-
 function searchFilms() {
-  const input = document
-    .getElementById("filter-name-input")
-    .value.toUpperCase();
-  //Chamar cards do HTML
+  
   const cards = document.getElementsByClassName("cards");
-
-  //Iterar por todos os cards e selecionar os títulos pelo index de cada um
+  console.log(searchInput.innerHTML);
+  const filteredCards = films.filterByTitle(cards, searchInput.value);
+  
   for (let i = 0; i < cards.length; i++) {
-    const titles = cards[i].querySelector("#film-title");
-
-    //Checar o texto do título em uppercase e o index de input no array
-    if (titles.innerText.toUpperCase().indexOf(input) > -1) {
-      //Retornar o card do array se o index for válido, ou seja, existir no array (igual ou maior que 0)
+    if (filteredCards.indexOf(cards[i]) > -1) {
       cards[i].style.display = "";
     } else {
-      //Se o index for inválido, o display será nulo, e nada aparecerá
       cards[i].style.display = "none";
     }
-
-    //console.log(cards);
   }
 }
 
@@ -204,7 +162,9 @@ function showCharactersByFilm(index) {
   const parentDiv = document.querySelector(".bottom-info");
   const divBackButton = document.createElement("div");
   divBackButton.classList.add("list-container");
-  divBackButton.innerHTML = `<button id="back-button">Go Back</button>`;
+  divBackButton.innerHTML = `
+  <input type="submit" id="back-button" class="filter-button buttons" value="Back"/>
+  `;
   parentDiv.appendChild(divBackButton);
 
   const backButton = document.querySelector("#back-button");
@@ -221,7 +181,6 @@ function showCharactersByFilm(index) {
         <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
           <p id="film-title" class="film-info">${element.name}</p>
           <p class="film-info">${element.gender}</p>
-          <button class="more" id="${index}">More</button>
         </div>
       `;
     })
