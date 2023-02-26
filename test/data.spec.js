@@ -91,3 +91,43 @@ describe('films.filterCharacterByFilm', () => {
   });
 });
 
+// describe('films.filterBySearchInput', () => {
+//   const cards = [
+//     { querySelector: () => ({ innerText: 'My Neighbor Totoro' }) },
+//     { querySelector: () => ({ innerText: 'Spirited Away' }) },
+//     { querySelector: () => ({ innerText: 'Howl\'s Moving Castle' }) }
+//   ];
+//   const input = 'totoro';
+
+//   // Act
+//   const result = films.filterBySearchInput(cards, input);
+
+//   // Assert
+//   expect(result).toEqual([{ querySelector: () => ({ innerText: 'My Neighbor Totoro' }) }]);
+// });
+
+describe('films.filterBySearchInput', () => {
+  it('is a function', () => {
+    expect(typeof films.filterBySearchInput).toBe('function');
+  });
+
+  const cards = [
+    {
+      querySelector: () => ({ innerText: 'My Neighbor Totoro' })
+    },
+    {
+      querySelector: () => ({ innerText: 'Spirited Away' })
+    },
+    {
+      querySelector: () => ({ innerText: 'Princess Mononoke' })
+    }
+  ];
+
+  const input = 'Totoro';
+  const result = films.filterBySearchInput(cards, input);
+
+  it('should return an array of cards that contain the search term in the title', () => { 
+    expect(result).toEqual([cards[0]]);
+  });
+    
+});

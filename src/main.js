@@ -1,5 +1,6 @@
 import data from "./data/ghibli/ghibli.js";
 import { films } from "./data.js";
+import {showCharactersByFilm} from "./characters.js";
 
 const allAnimations = data.films;
 
@@ -59,7 +60,8 @@ function showDescription(index) {
   const chosenAnimation = allAnimations[index];
   console.log(chosenAnimation);
   const modalContainer = document.getElementById("modal-container");
-  modalContainer.innerHTML = `
+
+   modalContainer.innerHTML = `
   <div class="modal">
   <div class="modal-side">
   <img id="${index}" class="posters" src="${chosenAnimation.poster}" alt="Pôster de ${chosenAnimation.title}">
@@ -71,21 +73,24 @@ function showDescription(index) {
   <p class="film-info">${chosenAnimation.description}</p>
   <p class="more-info">For more information:</p>
   <button class="buttons more-info-bts" id="characters-button-${index}">Characters</button>
-  <button class="buttons more-info-bts">Locations</button>
+  <button class="buttons more-info-bts" id="locations-button-${index}">Locations</button>
   <button class="buttons more-info-bts" id="vehicles-button-${index}">Vehicles</button>
   <button class="buttons" id="close">Go back</button>
   </div>
   </div>`;
 
   modal_container.classList.add("show");
-
+  
   const close = document.getElementById("close");
   close.addEventListener("click", () => {
     modal_container.classList.remove("show");
   });
 
   const characterButton = document.getElementById("characters-button-" + index);
+  
   const vehiclesButton = document.getElementById("vehicles-button-" + index);
+
+  const locationsButton = document.getElementById("locations-button-" + index);
 
   characterButton.addEventListener("click", function () {
     const characterButtonId = this.id;
@@ -94,11 +99,28 @@ function showDescription(index) {
     showCharactersByFilm(index);
   });
 
+  const charactersArray = chosenAnimation.people; 
+  const vehiclesArray = chosenAnimation.vehicles; 
+  const locationsArray = chosenAnimation.locations;
+  
+  if (charactersArray.length > 0){
+    characterButton.classList.add("show");
+  }
+
+  if (vehiclesArray.length > 0){
+    vehiclesButton.classList.add("show");
+  }
+
+  if (locationsArray.length > 0){
+    locationsButton.classList.add("show");
+  }
+
   vehiclesButton.addEventListener("click", function () {
     const vehiclesButtonId = this.id;
     const index = vehiclesButtonId.split("-").pop();
     modal_container.classList.remove("show");
     showVehiclesByFilm(index);
+   
   });
 }
 
@@ -143,7 +165,7 @@ function searchFilms() {
   
   const cards = document.getElementsByClassName("cards");
   console.log(searchInput.innerHTML);
-  const filteredCards = films.filterByTitle(cards, searchInput.value);
+  const filteredCards = films.filterBySearchInput(cards, searchInput.value);
   
   for (let i = 0; i < cards.length; i++) {
     if (filteredCards.indexOf(cards[i]) > -1) {
@@ -156,78 +178,37 @@ function searchFilms() {
 
 // NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
-function showCharactersByFilm(index) {
-  const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);
 
-  const parentDiv = document.querySelector(".bottom-info");
-  const divBackButton = document.createElement("div");
-  divBackButton.classList.add("list-container");
-  divBackButton.innerHTML = `
-  <input type="submit" id="back-button" class="filter-button buttons" value="Back"/>
-  `;
-  parentDiv.appendChild(divBackButton);
 
-  const backButton = document.querySelector("#back-button");
-  backButton.addEventListener("click", () => {
-    history.pushState(null, null, document.referrer);
-    window.location.reload();
-  });
+// function showLocationByFilm(index) {
+//   const locationsByFilm = films.filterLocationByFilm(allAnimations, index);
 
-  const charactersAnimationCards = charactersByFilm
-    .map((element) => {
-      return `
-      
-        <div class="cards">
-        <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
-          <p id="film-title" class="film-info">${element.name}</p>
-          <p class="film-info">${element.gender}</p>
-        </div>
-      `;
-    })
-    .join("");
+//   const parentDiv = document.querySelector(".bottom-info");
+//   const animationsTotal = document.createElement("div");
+//   animationsTotal.classList.add("list-container");
+//   animationsTotal.innerHTML = `<button id="back-button">Go Back</button>`;
 
-  animationCards.innerHTML = charactersAnimationCards;
+//   parentDiv.appendChild(animationsTotal);
+//   const backButton = document.querySelector("#back-button");
+//   backButton.addEventListener("click", () => {
+//     history.pushState(null, null, document.referrer);
+//     window.location.reload();
+//   });
 
-  const posterImage = document.querySelectorAll(".posters");
-  posterImage.forEach((img) => {
-    img.addEventListener("click", function () {
-      alert('modal-personagens');
-      const index = this.id;
-      modal_container.classList.add("show");
-      showDescription(index);
-    });
-  });
-}
+//   const animationCardsLocation = locationsByFilm
+//     .map((element) => {
+//       return `
+//     <div class="cards">
+//     <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
+//     <p id="film-title" class="film-info">${element.name}</p>
+//     <p class="film-info">Climate: ${element.climate}<br>Terrain: ${element.terrain}<br>Surface water: ${element.surface_water}</p>
+//     </div>
+//     `;
+//     })
+//     .join("");
 
-function showLocationByFilm(index) {
-  const locationsByFilm = films.filterLocationByFilm(allAnimations, index);
-
-  const parentDiv = document.querySelector(".bottom-info");
-  const animationsTotal = document.createElement("div");
-  animationsTotal.classList.add("list-container");
-  animationsTotal.innerHTML = `<button id="back-button">Go Back</button>`;
-
-  parentDiv.appendChild(animationsTotal);
-  const backButton = document.querySelector("#back-button");
-  backButton.addEventListener("click", () => {
-    history.pushState(null, null, document.referrer);
-    window.location.reload();
-  });
-
-  const animationCardsLocation = locationsByFilm
-    .map((element) => {
-      return `
-    <div class="cards">
-    <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
-    <p id="film-title" class="film-info">${element.name}</p>
-    <p class="film-info">Climate: ${element.climate}<br>Terrain: ${element.terrain}<br>Surface water: ${element.surface_water}</p>
-    </div>
-    `;
-    })
-    .join("");
-
-  animationCards.innerHTML = animationCardsLocation;
-}
+//   animationCards.innerHTML = animationCardsLocation;
+// }
 
 // NOVA FUNCAO DE FILTRO DE VEÍCULOS POR FILME
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO

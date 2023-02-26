@@ -14,8 +14,6 @@ export const films = {
   filterCharacterByFilm: function filterCharacterByFilm (dataFilms, index)
   {
     const dataFilmsCopy = [...dataFilms];
-    // console.log(dataFilmsCopy[index].people);
-    //    console.log(dataFilmsCopy[index].people);
     return dataFilmsCopy[index].people;
     
   },
@@ -28,10 +26,10 @@ export const films = {
   filterVehiclesByFilm: function filterVehiclesByFilm (dataFilms, index)
   {
     const dataFilmsCopy = [...dataFilms];
-    return dataFilmsCopy[index].vehicles;   
+    return dataFilmsCopy[index].vehicles;  
   },
 
-  filterByTitle: function filterByTitle (cards, input)
+  filterBySearchInput: function filterBySearchInput (cards, input)
   {
     const filteredCards = [];
     const searchTerm = input.toUpperCase();
