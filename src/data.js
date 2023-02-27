@@ -29,16 +29,16 @@ export const films = {
     return dataFilmsCopy[index].vehicles;  
   },
 
-  filterBySearchInput: function filterBySearchInput (cards, input)
+  filterBySearchInput: function filterBySearchInput (films, input)
   {
     const filteredCards = [];
     const searchTerm = input.toUpperCase();
-    for (let i = 0; i < cards.length; i++) {
-      const titles = cards[i].querySelector("#film-title");
+    for (let i = 0; i < films.length; i++) {
+      const titles = films[i].title;
  
-      if (titles.innerText.toUpperCase().includes(searchTerm)) {
+      if (titles.toUpperCase().includes(searchTerm)) {
       //  alert('filtertitle');
-        filteredCards.push(cards[i]);
+        filteredCards.push(films[i]);
       }
     }
   

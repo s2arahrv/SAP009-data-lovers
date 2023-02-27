@@ -1,6 +1,6 @@
 import data from "./data/ghibli/ghibli.js";
 import { films } from "./data.js";
-import {showCharactersByFilm} from "./characters.js";
+import { showCharactersByFilm } from "./characters.js";
 
 const allAnimations = data.films;
 
@@ -47,7 +47,7 @@ function showAnimations(animationArray) {
   const posterImage = document.querySelectorAll(".posters");
   posterImage.forEach((img) => {
     img.addEventListener("click", function () {
-      alert('modal-animation-description');
+      alert("modal-animation-description");
       const index = this.id;
       modal_container.classList.add("show");
       showDescription(index);
@@ -58,13 +58,35 @@ function showAnimations(animationArray) {
 //ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
 function showDescription(index) {
   const chosenAnimation = allAnimations[index];
-  console.log(chosenAnimation);
-  const modalContainer = document.getElementById("modal-container");
 
-   modalContainer.innerHTML = `
+  const imageURL = chosenAnimation.poster;
+  let imageAnimation = null;
+  // let x = imageURL;
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", imageURL);
+  xhr.onload = function () {
+    const imageStatus = xhr.status;
+    console.log(imageStatus);
+    //return imageStatus;
+    if (imageStatus === 404) {
+      //alert('baba');
+      // x = ";
+      // imageURL = x;
+      imageAnimation = "./assets/studio-ghibli-logo.png";
+      console.log(imageURL);
+    } else {
+      //  alert('boba');
+      // x = chosenAnimation.poster;
+      imageAnimation = chosenAnimation.poster;
+      console.log(imageURL);
+    }
+
+    const modalContainer = document.getElementById("modal-container");
+
+    modalContainer.innerHTML = `
   <div class="modal">
   <div class="modal-side">
-  <img id="${index}" class="posters" src="${chosenAnimation.poster}" alt="Pôster de ${chosenAnimation.title}">
+  <img id="${index}" class="posters" src="${imageAnimation}" alt="Pôster de ${chosenAnimation.title}">
   <p class="modal-title">${chosenAnimation.title}</p>
   <p class="film-info">Director: ${chosenAnimation.director}<br>Producer: ${chosenAnimation.producer}<br>Release: ${chosenAnimation.release_date}<br>RT Score: ${chosenAnimation.rt_score}</p>
   </div>
@@ -79,49 +101,57 @@ function showDescription(index) {
   </div>
   </div>`;
 
-  modal_container.classList.add("show");
-  
-  const close = document.getElementById("close");
-  close.addEventListener("click", () => {
-    modal_container.classList.remove("show");
-  });
+    modal_container.classList.add("show");
 
-  const characterButton = document.getElementById("characters-button-" + index);
-  
-  const vehiclesButton = document.getElementById("vehicles-button-" + index);
+    const close = document.getElementById("close");
+    close.addEventListener("click", () => {
+      modal_container.classList.remove("show");
+    });
 
-  const locationsButton = document.getElementById("locations-button-" + index);
+    const characterButton = document.getElementById(
+      "characters-button-" + index
+    );
+    const vehiclesButton = document.getElementById("vehicles-button-" + index);
+    const locationsButton = document.getElementById(
+      "locations-button-" + index
+    );
 
-  characterButton.addEventListener("click", function () {
-    const characterButtonId = this.id;
-    const index = characterButtonId.split("-").pop();
-    modal_container.classList.remove("show");
-    showCharactersByFilm(index);
-  });
+    const charactersArray = chosenAnimation.people;
+    const vehiclesArray = chosenAnimation.vehicles;
+    const locationsArray = chosenAnimation.locations;
 
-  const charactersArray = chosenAnimation.people; 
-  const vehiclesArray = chosenAnimation.vehicles; 
-  const locationsArray = chosenAnimation.locations;
-  
-  if (charactersArray.length > 0){
-    characterButton.classList.add("show");
-  }
+    if (charactersArray.length > 0) {
+      characterButton.classList.add("show");
+    }
 
-  if (vehiclesArray.length > 0){
-    vehiclesButton.classList.add("show");
-  }
+    if (vehiclesArray.length > 0) {
+      vehiclesButton.classList.add("show");
+    }
 
-  if (locationsArray.length > 0){
-    locationsButton.classList.add("show");
-  }
+    if (locationsArray.length > 0) {
+      locationsButton.classList.add("show");
+    }
 
-  vehiclesButton.addEventListener("click", function () {
-    const vehiclesButtonId = this.id;
-    const index = vehiclesButtonId.split("-").pop();
-    modal_container.classList.remove("show");
-    showVehiclesByFilm(index);
-   
-  });
+    characterButton.addEventListener("click", function () {
+      const characterButtonId = this.id;
+      const index = characterButtonId.split("-").pop();
+      modal_container.classList.remove("show");
+      showCharactersByFilm(index);
+    });
+
+    vehiclesButton.addEventListener("click", function () {
+      const vehiclesButtonId = this.id;
+      const index = vehiclesButtonId.split("-").pop();
+      modal_container.classList.remove("show");
+      showVehiclesByFilm(index);
+    });
+  };
+
+  //   //console.log(xhr.status); // retorna o código de status HTTP
+  // };
+  xhr.send();
+
+  console.log(imageURL);
 }
 
 //essa função pode ser mudada para receber diferentes filtros e passar pra
@@ -163,22 +193,13 @@ function createElement() {
 
 function searchFilms() {
   
-  const cards = document.getElementsByClassName("cards");
-  console.log(searchInput.innerHTML);
-  const filteredCards = films.filterBySearchInput(cards, searchInput.value);
-  
-  for (let i = 0; i < cards.length; i++) {
-    if (filteredCards.indexOf(cards[i]) > -1) {
-      cards[i].style.display = "";
-    } else {
-      cards[i].style.display = "none";
-    }
-  }
+  const filteredCards = films.filterBySearchInput(allAnimations, searchInput.value);
+  console.log(filteredCards)
+ showAnimations(filteredCards);
 }
 
 // NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
-
 
 // function showLocationByFilm(index) {
 //   const locationsByFilm = films.filterLocationByFilm(allAnimations, index);
