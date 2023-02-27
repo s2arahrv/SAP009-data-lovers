@@ -1,24 +1,24 @@
-import { films } from '../src/data.js';
+import { films } from "../src/data.js";
 
 const inputOriginal = [
-  { title: 'hope', year: 2023 },
-  { title: 'chaos', year: 2018 },
-  { title: 'star', year: 2003 },
-  { title: 'coup', year: 2016 },
+  { title: "hope", year: 2023 },
+  { title: "chaos", year: 2018 },
+  { title: "star", year: 2003 },
+  { title: "coup", year: 2016 },
 ];
 
 const outputAlphabetical = [
-  { title: 'chaos', year: 2018 },
-  { title: 'coup', year: 2016 },
-  { title: 'hope', year: 2023 },
-  { title: 'star', year: 2003 },
+  { title: "chaos", year: 2018 },
+  { title: "coup", year: 2016 },
+  { title: "hope", year: 2023 },
+  { title: "star", year: 2003 },
 ];
 
 const outputInverseAlphabetical = [
-  { title: 'star', year: 2003 },
-  { title: 'hope', year: 2023 },
-  { title: 'coup', year: 2016 },
-  { title: 'chaos', year: 2018 },
+  { title: "star", year: 2003 },
+  { title: "hope", year: 2023 },
+  { title: "coup", year: 2016 },
+  { title: "chaos", year: 2018 },
 ];
 
 const characters = [
@@ -30,43 +30,36 @@ const characters = [
     age: "Adult",
     eye_color: "Black",
     hair_color: "Brown",
-    specie: "Raccoon Dog"
+    specie: "Raccoon Dog",
   },
 ];
-
-const locations = [
-  {
-    id: "0fafa7a3-64c1-43fe-881b-ecb605c01e09",
-    name: "Laputa",
-    img: "https://static.wikia.nocookie.net/studio-ghibli/images/e/e7/Laputa.png",
-    climate: "Continental",
-    terrain: "City",
-    surface_water: "40",
-  },
-];
-
-describe('films', () => {
-  it('is a object', () => {
-    expect(typeof films).toBe('object');
-  })});
-
-describe('films.alphabeticOrderFilter', () => {
-  it('is a function', () => {
-    expect(typeof films.alphabeticOrderFilter).toBe('function');
-  });
-
-  it('returns an array in alphabetical order by title', () => {
-    expect(films.alphabeticOrderFilter(inputOriginal)).toEqual(outputAlphabetical);
+describe("films", () => {
+  it("is a object", () => {
+    expect(typeof films).toBe("object");
   });
 });
 
-describe('films.inverseAlphabeticOrderFilter', () => {
-  it('is a function', () => {
-    expect(typeof films.inverseAlphabeticOrderFilter).toBe('function');
+describe("films.alphabeticOrderFilter", () => {
+  it("is a function", () => {
+    expect(typeof films.alphabeticOrderFilter).toBe("function");
   });
 
-  it('returns an array in inverse alphabetical order by title', () => { 
-    expect(films.inverseAlphabeticOrderFilter(inputOriginal)).toEqual(outputInverseAlphabetical);
+  it("returns an array in alphabetical order by title", () => {
+    expect(films.alphabeticOrderFilter(inputOriginal)).toEqual(
+      outputAlphabetical
+    );
+  });
+});
+
+describe("films.inverseAlphabeticOrderFilter", () => {
+  it("is a function", () => {
+    expect(typeof films.inverseAlphabeticOrderFilter).toBe("function");
+  });
+
+  it("returns an array in inverse alphabetical order by title", () => {
+    expect(films.inverseAlphabeticOrderFilter(inputOriginal)).toEqual(
+      outputInverseAlphabetical
+    );
   });
 });
 
@@ -76,47 +69,56 @@ describe('films.inverseAlphabeticOrderFilter', () => {
 //   });
 // });
 
-describe('films.filterCharacterByFilm', () => {
-  it('is a function', () => {
-    expect(typeof films.filterCharacterByFilm).toBe('function');
+describe("films.filterCharacterByFilm", () => {
+  it("is a function", () => {
+    expect(typeof films.filterCharacterByFilm).toBe("function");
   });
-  it('is a object', () => {
-    expect(typeof characters[0]).toBe('object');
+
+  it("is a object", () => {
+    expect(typeof characters[0]).toBe("object");
   });
-  it('is a array', () => {
+
+  it("is a array", () => {
     expect(Array.isArray(characters)).toBe(true);
   });
 
-  it('returns an array with all characters info of the chosen film', () => {    
-    expect(characters[0]).toHaveProperty('id');
-    expect(characters[0]).toHaveProperty('name');
-    expect(characters[0]).toHaveProperty('img');
-    expect(characters[0]).toHaveProperty('gender');
-    expect(characters[0]).toHaveProperty('age');
-    expect(characters[0]).toHaveProperty('eye_color');
-    expect(characters[0]).toHaveProperty('hair_color');
-    expect(characters[0]).toHaveProperty('specie');    
+  it("returns an array with all characters info of the chosen film", () => {
+    expect(characters[0]).toHaveProperty("id");
+    expect(characters[0]).toHaveProperty("name");
+    expect(characters[0]).toHaveProperty("img");
+    expect(characters[0]).toHaveProperty("gender");
+    expect(characters[0]).toHaveProperty("age");
+    expect(characters[0]).toHaveProperty("eye_color");
+    expect(characters[0]).toHaveProperty("hair_color");
+    expect(characters[0]).toHaveProperty("specie");
   });
 });
 
-describe('films.filterLocationByFilm', () => {
-  it('is a function', () => {
-    expect(typeof films.filterLocationByFilm).toBe('function');
-  });
-  it('is a object', () => {
-    expect(typeof locations[0]).toBe('object');
-  });
-  it('is a array', () => {
-    expect(Array.isArray(locations)).toBe(true);
+// describe('films.filterBySearchInput', () => {
+//   const cards = [
+//     { querySelector: () => ({ innerText: 'My Neighbor Totoro' }) },
+//     { querySelector: () => ({ innerText: 'Spirited Away' }) },
+//     { querySelector: () => ({ innerText: 'Howl\'s Moving Castle' }) }
+//   ];
+//   const input = 'totoro';
+
+//   // Act
+//   const result = films.filterBySearchInput(cards, input);
+
+//   // Assert
+//   expect(result).toEqual([{ querySelector: () => ({ innerText: 'My Neighbor Totoro' }) }]);
+// });
+
+describe("films.filterBySearchInput", () => {
+  it("is a function", () => {
+    expect(typeof films.filterBySearchInput).toBe("function");
   });
 
-  it('returns an array with all characters info of the chosen film', () => {    
-    expect(locations[0]).toHaveProperty('id');
-    expect(locations[0]).toHaveProperty('name');
-    expect(locations[0]).toHaveProperty('img');  
-    expect(locations[0]).toHaveProperty('climate');  
-    expect(locations[0]).toHaveProperty('terrain');  
-    expect(locations[0]).toHaveProperty('surface_water');   
+  it("should return an array of cards that contain the search term in the title", () => {
+    const input = "hope";
+    const result = films.filterBySearchInput(inputOriginal, input);
+
+    expect(result.length).toEqual(1);
+    expect(result[0].title).toEqual(input);
   });
 });
-
