@@ -25,13 +25,22 @@ export function showCharactersByFilm(index) {
   const charactersAnimationCards = charactersByFilm
     .map((element) => {
       return `
-        
-          <div class="cards">
-          <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
-            <p id="film-title" class="film-info">${element.name}</p>
-            <p class="film-info">${element.gender}</p>
-          </div>
-        `;
+    
+    <div class="char-cards">
+          <div class="card-front">
+            <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
+              <p id="film-title" class="film-info">${element.name}</p>
+          </div> 
+          <div class="card-back">
+              <p id="film-title" class="film-info">${element.name}</p>
+              <p class="film-info">${element.gender}</p>
+              <p class="film-info">${element.age}</p>
+              <p class="film-info">${element.eye_color}</p>
+              <p class="film-info">${element.hair_color}</p>
+              <p class="film-info">${element.specie}</p>
+          </div>    
+     </div>   
+    `;
     })
     .join("");
 
