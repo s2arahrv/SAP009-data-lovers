@@ -192,10 +192,12 @@ function createElement() {
 }
 
 function searchFilms() {
-  
-  const filteredCards = films.filterBySearchInput(allAnimations, searchInput.value);
-  console.log(filteredCards)
- showAnimations(filteredCards);
+  const filteredCards = films.filterBySearchInput(
+    allAnimations,
+    searchInput.value
+  );
+  console.log(filteredCards);
+  showAnimations(filteredCards);
 }
 
 // NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME

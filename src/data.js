@@ -37,7 +37,7 @@ export const films = {
       const titles = films[i].title;
  
       if (titles.toUpperCase().includes(searchTerm)) {
-      //  alert('filtertitle');
+      
         filteredCards.push(films[i]);
       }
     }

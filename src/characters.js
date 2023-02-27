@@ -37,13 +37,4 @@ export function showCharactersByFilm(index) {
 
   animationCards.innerHTML = charactersAnimationCards;
 
-  // const posterImage = document.querySelectorAll(".posters");
-  // posterImage.forEach((img) => {
-  //   img.addEventListener("click", function () {
-  //     alert('modal-personagens');
-  //     const index = this.id;
-  //     modal_container.classList.add("show");
-  //     showDescription(index);
-  //   });
-  // });
 }
