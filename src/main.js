@@ -217,10 +217,16 @@ function showCharactersByFilm(index) {
   const charactersByFilm = films.filterCharacterByFilm(allAnimations, index);
 
   const parentDiv = document.querySelector(".bottom-info");
-  const divBackButton = document.createElement("div");
-  divBackButton.classList.add("list-container");
-  divBackButton.innerHTML = `<button id="back-button">Go Back</button>`;
-  parentDiv.appendChild(divBackButton);
+  const divCharFilters = document.createElement("div");
+  divCharFilters.classList.add("list-container");
+  divCharFilters.innerHTML = `
+  <div id="char-page">
+  <select id="char-filters">
+    <option value="default"></option>
+  </select>
+  <button id="back-button">Go Back</button>
+  </div>`;
+  parentDiv.appendChild(divCharFilters);
 
   const backButton = document.querySelector("#back-button");
   backButton.addEventListener("click", () => {
@@ -232,12 +238,20 @@ function showCharactersByFilm(index) {
     .map((element) => {
       return `
       
-        <div class="cards">
-        <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
-          <p id="film-title" class="film-info">${element.name}</p>
-          <p class="film-info">${element.gender}</p>
-          <button class="more" id="${index}">More</button>
-        </div>
+      <div class="char-cards">
+            <div class="card-front">
+              <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
+                <p id="film-title" class="film-info">${element.name}</p>
+            </div> 
+            <div class="card-back">
+                <p id="film-title" class="film-info">${element.name}</p>
+                <p class="film-info">${element.gender}</p>
+                <p class="film-info">${element.age}</p>
+                <p class="film-info">${element.eye_color}</p>
+                <p class="film-info">${element.hair_color}</p>
+                <p class="film-info">${element.specie}</p>
+            </div>    
+       </div>   
       `;
     })
     .join("");
