@@ -33,6 +33,36 @@ const characters = [
     specie: "Raccoon Dog",
   },
 ];
+
+const movie = [
+  {
+    "id": "2baf70d1-42bb-4437-b551-e5fed5a87abe",
+    "title": "Castle in the Sky",
+    "people": [
+      {
+        "id": "fe93adf2-2f3a-4ec4-9f68-5422f1b87c01",
+        "name": "Pazu",
+        "img": "https://static.wikia.nocookie.net/studio-ghibli/images/8/8b/Pazu.jpg",
+        "gender": "Male",
+        "age": "13",
+        "eye_color": "Black",
+        "hair_color": "Brown",
+        "specie": "Human"
+      },
+    ],
+    "locations": [
+      {
+        "id": "6ba60a86-7c74-4ec4-a6f4-7112b5705a2f",
+        "name": "Gondoa",
+        "img": "https://static.wikia.nocookie.net/studio-ghibli/images/2/25/Thumbnail-8.jpeg",
+        "climate": "TODO",
+        "terrain": "TODO",
+        "surface_water": "40",
+      },
+    ],
+  },
+];
+
 describe("films", () => {
   it("is a object", () => {
     expect(typeof films).toBe("object");
@@ -69,31 +99,6 @@ describe("films.inverseAlphabeticOrderFilter", () => {
 //   });
 // });
 
-describe("films.filterCharacterByFilm", () => {
-  it("is a function", () => {
-    expect(typeof films.filterCharacterByFilm).toBe("function");
-  });
-
-  it("is a object", () => {
-    expect(typeof characters[0]).toBe("object");
-  });
-
-  it("is a array", () => {
-    expect(Array.isArray(characters)).toBe(true);
-  });
-
-  it("returns an array with all characters info of the chosen film", () => {
-    expect(characters[0]).toHaveProperty("id");
-    expect(characters[0]).toHaveProperty("name");
-    expect(characters[0]).toHaveProperty("img");
-    expect(characters[0]).toHaveProperty("gender");
-    expect(characters[0]).toHaveProperty("age");
-    expect(characters[0]).toHaveProperty("eye_color");
-    expect(characters[0]).toHaveProperty("hair_color");
-    expect(characters[0]).toHaveProperty("specie");
-  });
-});
-
 // describe('films.filterBySearchInput', () => {
 //   const cards = [
 //     { querySelector: () => ({ innerText: 'My Neighbor Totoro' }) },
@@ -122,3 +127,49 @@ describe("films.filterBySearchInput", () => {
     expect(result[0].title).toEqual(input);
   });
 });
+
+describe("films.filterCharacterByFilm", () => {
+  it("is a function", () => {
+    expect(typeof films.filterCharacterByFilm).toBe("function");
+  });
+
+  it("is a object", () => {
+    expect(typeof characters[0]).toBe("object");
+  });
+
+  it("is a array", () => {
+    expect(Array.isArray(characters)).toBe(true);
+  });
+
+  /*it("returns an array with all characters info of the chosen film", () => {
+    expect(characters[0]).toHaveProperty("id");
+    expect(characters[0]).toHaveProperty("name");
+    expect(characters[0]).toHaveProperty("img");
+    expect(characters[0]).toHaveProperty("gender");
+    expect(characters[0]).toHaveProperty("age");
+    expect(characters[0]).toHaveProperty("eye_color");
+    expect(characters[0]).toHaveProperty("hair_color");
+    expect(characters[0]).toHaveProperty("specie");
+  });*/
+
+  it("returns an array with all the characters info of the chosen film", () => {
+    const result = films.filterCharacterByFilm(movie, [0]);
+    const people = movie.people;
+
+    expect(result.people).toEqual(people);
+  });
+});
+
+describe("films.filterLocationByFilm", () => {
+  it("is a function", () => {
+    expect(typeof films.filterLocationByFilm).toBe("function");
+  });
+
+  it("returns an array with all the location info of the chosen film", () => {
+    const result = films.filterLocationByFilm(movie, [0]);
+    const location = movie.locations;
+
+    expect(result.locations).toEqual(location);
+  });
+});
+
