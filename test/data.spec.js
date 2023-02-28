@@ -156,7 +156,7 @@ describe("films.filterCharacterByFilm", () => {
     const result = films.filterCharacterByFilm(movie, [0]);
     const people = movie.people;
 
-    expect(result.people).toEqual(people);
+    expect(result[0].people).toEqual(people);
   });
 });
 
@@ -169,7 +169,7 @@ describe("films.filterLocationByFilm", () => {
     const result = films.filterLocationByFilm(movie, [0]);
     const location = movie.locations;
 
-    expect(result.locations).toEqual(location);
+    expect(result[0].locations).toEqual(location);
   });
 });
 

@@ -15,7 +15,7 @@ export function showCharactersByFilm(index) {
     <input type="submit" id="back-button" class="filter-button buttons" value="Back"/>
     `;
   parentDiv.appendChild(divBackButton);
-
+ 
   const backButton = document.querySelector("#back-button");
   backButton.addEventListener("click", () => {
     history.pushState(null, null, document.referrer);
@@ -45,5 +45,4 @@ export function showCharactersByFilm(index) {
     .join("");
 
   animationCards.innerHTML = charactersAnimationCards;
-
 }
