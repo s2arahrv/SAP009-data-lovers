@@ -29,15 +29,18 @@ export function showCharactersByFilm(index) {
     <div class="char-cards">
           <div class="card-front">
             <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
-              <p id="film-title" class="film-info">${element.name}</p>
+              <p id="film-title" class="char-name">${element.name}</p>
           </div> 
           <div class="card-back">
-              <p id="film-title" class="film-info">${element.name}</p>
-              <p class="film-info">${element.gender}</p>
-              <p class="film-info">${element.age}</p>
-              <p class="film-info">${element.eye_color}</p>
-              <p class="film-info">${element.hair_color}</p>
-              <p class="film-info">${element.specie}</p>
+          <img src="./assets/studio-ghibli-logo.png"/>
+          <div class="card-back-info">
+              <p id="film-title" class="char-name">${element.name}</p>
+              <p class="film-info">Gender: ${element.gender}</p>
+              <p class="film-info">Age: ${element.age}</p>
+              <p class="film-info">Eye Color: ${element.eye_color}</p>
+              <p class="film-info">Hair Color: ${element.hair_color}</p>
+              <p class="film-info">Specie: ${element.specie}</p>
+              </div>
           </div>    
      </div>   
     `;

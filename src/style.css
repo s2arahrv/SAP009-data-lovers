@@ -52,6 +52,10 @@ header {
   padding-right: 2rem;
 }
 
+a {
+  text-decoration: none;
+}
+
 h1 {
   font-size: 4rem;
   padding-top: 2rem;
@@ -93,6 +97,12 @@ main {
   align-items: center;
   padding-right: 6rem;
   padding-left: 5.2rem; 
+}
+
+.calc-result {
+  color: #596F80;
+  font-size: 1.8rem;
+  font-weight: 500;
 }
 
 
@@ -137,9 +147,11 @@ main {
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.6rem;
   height: 4rem;
 }
+
+
+/* FILMS CARDS */
 
 .animation-cards {
   display: flex;  
@@ -149,8 +161,7 @@ main {
   padding-top: 2rem; 
   padding-left: 3rem;
   padding-right: 3rem;
-  font-size: 1.6rem;
-}
+ }
 
 .cards, .char-cards{
   display: flex;
@@ -164,11 +175,9 @@ main {
   align-items: center;
   padding-top: 1.4rem;
   padding-bottom: 1rem; 
-}
-
-.cards:hover{
-  background-color: #e85b64;
-  color: #c8e1e4;
+  border-color: #278b9a;
+  border-style: solid;
+  color:#3B4A54
 }
 
 .posters {
@@ -179,18 +188,33 @@ main {
   border-radius: 1rem;
 }
 
-footer {
-  height: 5vh;
-  background-color: #1c6773;
-  font-size: 1.2rem;
-  text-align: center;
-  color: white;
-  padding-top: 1rem;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+.film-info-title {
+  font-size: 1.6rem;  
+  color: #3B4A54;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
 }
 
+.film-info {
+  font-size: 1.4rem;
+  color: #3B4A54;
+  padding-bottom: .5rem;
+}
+
+.cards:hover{
+  background-color: #e85b64;
+  color: #edd79d;  
+}
+
+.cards:hover .film-info-title {
+  color: #fcf8ee;
+}
+
+.cards:hover .film-info {
+  color: #fcf8ee;
+}
+
+/* MODAL FILM DESCRIPTION */
 #modal-wrapper {
   position: fixed;
   display: flex;
@@ -216,33 +240,34 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   background-color: #fff;
-  width: 60rem;
-  height: 42rem;
+  width: 65rem;
+  height: 46rem;
   border-radius: 1rem;
   overflow: auto;
-}
-@media screen and (max-width: 600px) {
-  .modal {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    align-items: center;
-    width: 42rem;
-  }
+  border: #e85b64;
+  border-style: solid;
+  background-color: #fcf8ee;
 }
 
 .modal-title {
   font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
   color: #288A99;
   font-weight: bold;
-  font-size: 1.7rem;
+  font-size: 2rem;
   text-align: center;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
 }
 
-.modal-side {
+.modal-side-left {
   position: relative;
   padding: 2rem;
+  width: 30rem;
+}
+
+.modal-side-right {
+  position: relative;
+  padding: 2rem;
+  width: 50rem;
 }
 
 .more-info-bts {
@@ -264,6 +289,8 @@ footer {
 .more-info {
   margin-top: 1.5rem;
   padding: 0.5rem;
+  color: #e85b64;
+  font-weight: 700;
 }
 
 .show {
@@ -282,6 +309,19 @@ footer {
   border: none;
 }
 
+
+@media screen and (max-width: 600px) {
+  .modal {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    align-items: center;
+    width: 42rem;
+  }
+}
+
+/* FLIP CARDS CHARACTERS */
+
 .char-cards:hover .card-front {
   transform: rotateY(180deg);
 }
@@ -293,6 +333,16 @@ footer {
 .char-cards {
   transition: transform 0.8s;
   position: relative;
+  border-color:#e85b64 ;
+  border-style: solid;  
+}
+
+.char-cards:hover{
+  background-color: #FADCDD;
+  text-align: center;
+  width: 25rem;
+  height: 36rem;
+  
 }
 
 .card-front, .card-back {
@@ -302,13 +352,52 @@ footer {
 
 .card-back {
   transform: rotateY(180deg);
+  border: .5rem;
+  /* width: 20rem;
+  height: 31.4rem;  */
+}
+
+.card-back img {
+  width: 10rem;
+  height: auto;
+  padding-bottom: 3rem;
+}
+
+.card-back-info {
+    text-align: left;
+    
 }
 
 .card-front {
   transform: none;
 }
 
+.card-back .char-name {
+  
+  font-size: 1.8rem;
+  padding-bottom: 3rem;
+  font-weight: 700;
+  color: #288A99;
+  
+}
+
+.char-name {
+  text-align: center;
+}
+
 .modal-wrapper.show {
   opacity: 1;
   pointer-events: auto;
+}
+
+footer {
+  height: 5vh;
+  background-color: #1c6773;
+  font-size: 1.2rem;
+  text-align: center;
+  color: white;
+  padding-top: 1rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }

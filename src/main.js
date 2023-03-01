@@ -35,7 +35,7 @@ function showAnimations(animationArray) {
         `
       <div class="cards">
       <img id="${index}" class="posters" src="${animation.poster}" alt="Pôster de ${animation.title}">
-      <p id="film-title" class="film-info">${animation.title} </p>
+      <p id="film-title" class="film-info-title">${animation.title} </p>
       <p class="film-info"> ${animation.release_date}</p>
       </div>
       `
@@ -61,36 +61,28 @@ function showDescription(index) {
 
   const imageURL = chosenAnimation.poster;
   let imageAnimation = null;
-  // let x = imageURL;
+  
   const xhr = new XMLHttpRequest();
   xhr.open("GET", imageURL);
   xhr.onload = function () {
     const imageStatus = xhr.status;
-    console.log(imageStatus);
-    //return imageStatus;
-    if (imageStatus === 404) {
-      //alert('baba');
-      // x = ";
-      // imageURL = x;
-      imageAnimation = "./assets/studio-ghibli-logo.png";
-      console.log(imageURL);
-    } else {
-      //  alert('boba');
-      // x = chosenAnimation.poster;
-      imageAnimation = chosenAnimation.poster;
-      console.log(imageURL);
+  
+    if (imageStatus === 404) {    
+      imageAnimation = "./assets/studio-ghibli-logo.png";      
+    } else {    
+      imageAnimation = chosenAnimation.poster;      
     }
 
     const modalContainer = document.getElementById("modal-container");
 
     modalContainer.innerHTML = `
   <div class="modal">
-  <div class="modal-side">
+  <div class="modal-side-left">
   <img id="${index}" class="posters" src="${imageAnimation}" alt="Pôster de ${chosenAnimation.title}">
   <p class="modal-title">${chosenAnimation.title}</p>
   <p class="film-info">Director: ${chosenAnimation.director}<br>Producer: ${chosenAnimation.producer}<br>Release: ${chosenAnimation.release_date}<br>RT Score: ${chosenAnimation.rt_score}</p>
   </div>
-  <div class="modal-side">
+  <div class="modal-side-right">
   <p class="modal-title">Synopsis</p>
   <p class="film-info">${chosenAnimation.description}</p>
   <p class="more-info">For more information:</p>
@@ -185,6 +177,7 @@ function createElement() {
   const childDiv = document.querySelector(".filter-type");
   const animationsTotal = document.createElement("div");
   animationsTotal.classList.add("list-container");
+  animationsTotal.classList.add("calc-result");
   animationsTotal.innerHTML =
     "Total number of animations produced by Studio Ghibli: " +
     allAnimations.length;
