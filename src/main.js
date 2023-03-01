@@ -47,7 +47,6 @@ function showAnimations(animationArray) {
   const posterImage = document.querySelectorAll(".posters");
   posterImage.forEach((img) => {
     img.addEventListener("click", function () {
-      alert("modal-animation-description");
       const index = this.id;
       modal_container.classList.add("show");
       showDescription(index);
@@ -137,10 +136,15 @@ function showDescription(index) {
       modal_container.classList.remove("show");
       showVehiclesByFilm(index);
     });
+
+    locationsButton.addEventListener("click", function () {
+      const locationsButtonId = this.id;
+      const index = locationsButtonId.split("-").pop();
+      modal_container.classList.remove("show");
+      showLocationByFilm(index);
+    });
   };
 
-  //   //console.log(xhr.status); // retorna o código de status HTTP
-  // };
   xhr.send();
 
   console.log(imageURL);
@@ -193,38 +197,37 @@ function searchFilms() {
   showAnimations(filteredCards);
 }
 
-// NOVA FUNCAO DE FILTRO DE PERSONAGENS POR FILME
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
 
-// function showLocationByFilm(index) {
-//   const locationsByFilm = films.filterLocationByFilm(allAnimations, index);
+function showLocationByFilm(index) {
+  const locationsByFilm = films.filterLocationByFilm(allAnimations, index);
 
-//   const parentDiv = document.querySelector(".bottom-info");
-//   const animationsTotal = document.createElement("div");
-//   animationsTotal.classList.add("list-container");
-//   animationsTotal.innerHTML = `<button id="back-button">Go Back</button>`;
+  const parentDiv = document.querySelector(".bottom-info");
+  const animationsTotal = document.createElement("div");
+  animationsTotal.classList.add("list-container");
+  animationsTotal.innerHTML = `<input type="submit" id="back-button" class="filter-button buttons" value="Back"/>`;
 
-//   parentDiv.appendChild(animationsTotal);
-//   const backButton = document.querySelector("#back-button");
-//   backButton.addEventListener("click", () => {
-//     history.pushState(null, null, document.referrer);
-//     window.location.reload();
-//   });
+  parentDiv.appendChild(animationsTotal);
+  const backButton = document.querySelector("#back-button");
+  backButton.addEventListener("click", () => {
+    history.pushState(null, null, document.referrer);
+    window.location.reload();
+  });
 
-//   const animationCardsLocation = locationsByFilm
-//     .map((element) => {
-//       return `
-//     <div class="cards">
-//     <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
-//     <p id="film-title" class="film-info">${element.name}</p>
-//     <p class="film-info">Climate: ${element.climate}<br>Terrain: ${element.terrain}<br>Surface water: ${element.surface_water}</p>
-//     </div>
-//     `;
-//     })
-//     .join("");
+  const animationCardsLocation = locationsByFilm
+    .map((element) => {
+      return `
+    <div class="cards">
+    <img class="posters" src="${element.img}" alt="Pôster de ${element.name}">
+    <p id="film-title" class="film-info">${element.name}</p>
+    <p class="film-info">Climate: ${element.climate}<br>Terrain: ${element.terrain}<br>Surface water: ${element.surface_water}</p>
+    </div>
+    `;
+    })
+    .join("");
 
-//   animationCards.innerHTML = animationCardsLocation;
-// }
+  animationCards.innerHTML = animationCardsLocation;
+}
 
 // NOVA FUNCAO DE FILTRO DE VEÍCULOS POR FILME
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
