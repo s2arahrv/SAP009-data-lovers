@@ -16,14 +16,6 @@ const animationCards = document.querySelector(".animation-cards");
 
 const modal_container = document.getElementById("modal-wrapper");
 
-const posterImage = document.querySelectorAll(".posters");
-posterImage.forEach((img) => {
-  img.addEventListener("click", function () {
-    const index = this.id;
-    modal_container.classList.add("show");
-    showDescription(index);
-  });
-});
 
 showAnimations(allAnimations);
 
@@ -49,27 +41,55 @@ function showAnimations(animationArray) {
     img.addEventListener("click", function () {
       const index = this.id;
       modal_container.classList.add("show");
-      showDescription(index);
+      showDescription(dataList, index);
     });
-  });
+  });  
+}
+
+createElement();
+// INICIO DA IDEIA DE CALCULO AGREGADO
+// STATUS: FUNCIONA
+// SUGESTAO PRECISA IR UM PEDAÇO PRA DATA.JS / pode ser chamada por eventlistener (aí tirar linha 151))
+function createElement() {
+  const parentDiv = document.querySelector(".bottom-info");
+  const childDiv = document.querySelector(".filter-type");
+  const animationsTotal = document.createElement("div");
+  animationsTotal.id = "label-total";
+  // animationsTotal.classList.add("list-container");
+  animationsTotal.classList.add("calc-result");
+  
+  animationsTotal.innerHTML =
+    "Total number of animations produced by Studio Ghibli: " +
+    allAnimations.length;
+  parentDiv.appendChild(animationsTotal, childDiv);
+}
+
+function searchFilms() {
+  const filteredCards = films.filterBySearchInput(
+    allAnimations,
+    searchInput.value
+  );
+  
+  showAnimations(filteredCards);
 }
 
 //ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
-function showDescription(index) {
-  const chosenAnimation = allAnimations[index];
+function showDescription(dataList, index) {
+  const chosenAnimation = dataList[index];
+  console.log(chosenAnimation);
+ // console.log(chosenAnimation.title);
 
-  const imageURL = chosenAnimation.poster;
-  let imageAnimation = null;
-  
+  let imageURL = chosenAnimation.poster;
+    
   const xhr = new XMLHttpRequest();
   xhr.open("GET", imageURL);
   xhr.onload = function () {
     const imageStatus = xhr.status;
   
     if (imageStatus === 404) {    
-      imageAnimation = "./assets/studio-ghibli-logo.png";      
+      imageURL = "./assets/studio-ghibli-logo.png";      
     } else {    
-      imageAnimation = chosenAnimation.poster;      
+      imageURL = chosenAnimation.poster;      
     }
 
     const modalContainer = document.getElementById("modal-container");
@@ -77,7 +97,7 @@ function showDescription(index) {
     modalContainer.innerHTML = `
   <div class="modal">
   <div class="modal-side-left">
-  <img id="${index}" class="posters" src="${imageAnimation}" alt="Pôster de ${chosenAnimation.title}">
+  <img id="${index}" class="posters" src="${imageURL}" alt="Pôster de ${chosenAnimation.title}">
   <p class="modal-title">${chosenAnimation.title}</p>
   <p class="film-info">Director: ${chosenAnimation.director}<br>Producer: ${chosenAnimation.producer}<br>Release: ${chosenAnimation.release_date}<br>RT Score: ${chosenAnimation.rt_score}</p>
   </div>
@@ -128,6 +148,8 @@ function showDescription(index) {
       const index = characterButtonId.split("-").pop();
       modal_container.classList.remove("show");
       showCharactersByFilm(index);
+      filterTypeLabel.innerHTML = "Characters";
+      
     });
 
     vehiclesButton.addEventListener("click", function () {
@@ -147,7 +169,7 @@ function showDescription(index) {
 
   xhr.send();
 
-  console.log(imageURL);
+  
 }
 
 //essa função pode ser mudada para receber diferentes filtros e passar pra
@@ -169,33 +191,9 @@ function defineAlphabeticalFilter(event) {
     filterTypeLabel.innerHTML = "Animations from Z - A";
   }
   showAnimations(alphabeticalFilter);
+  
 }
 
-createElement();
-
-// INICIO DA IDEIA DE CALCULO AGREGADO
-// STATUS: FUNCIONA
-// SUGESTAO PRECISA IR UM PEDAÇO PRA DATA.JS / pode ser chamada por eventlistener (aí tirar linha 151))
-function createElement() {
-  const parentDiv = document.querySelector(".bottom-info");
-  const childDiv = document.querySelector(".filter-type");
-  const animationsTotal = document.createElement("div");
-  animationsTotal.classList.add("list-container");
-  animationsTotal.classList.add("calc-result");
-  animationsTotal.innerHTML =
-    "Total number of animations produced by Studio Ghibli: " +
-    allAnimations.length;
-  parentDiv.insertBefore(animationsTotal, childDiv);
-}
-
-function searchFilms() {
-  const filteredCards = films.filterBySearchInput(
-    allAnimations,
-    searchInput.value
-  );
-  console.log(filteredCards);
-  showAnimations(filteredCards);
-}
 
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
 
