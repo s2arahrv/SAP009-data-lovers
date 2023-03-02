@@ -69,16 +69,14 @@ function searchFilms() {
     allAnimations,
     searchInput.value
   );
-  
+  filterTypeLabel.innerHTML = "Search By Name";
   showAnimations(filteredCards);
 }
 
 //ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
 function showDescription(dataList, index) {
   const chosenAnimation = dataList[index];
-  console.log(chosenAnimation);
- // console.log(chosenAnimation.title);
-
+ 
   let imageURL = chosenAnimation.poster;
     
   const xhr = new XMLHttpRequest();
@@ -87,7 +85,7 @@ function showDescription(dataList, index) {
     const imageStatus = xhr.status;
   
     if (imageStatus === 404) {    
-      imageURL = "./assets/studio-ghibli-logo.png";      
+      imageURL = "./assets/studio-ghibli-logo-small.png";      
     } else {    
       imageURL = chosenAnimation.poster;      
     }
@@ -147,8 +145,10 @@ function showDescription(dataList, index) {
       const characterButtonId = this.id;
       const index = characterButtonId.split("-").pop();
       modal_container.classList.remove("show");
-      showCharactersByFilm(index);
+      const charactersFilmArray = dataList[index].people
+      showCharactersByFilm(charactersFilmArray, index, chosenAnimation);
       filterTypeLabel.innerHTML = "Characters";
+      filterButton.value = "Characters from A-Z";
       
     });
 
@@ -182,7 +182,6 @@ function defineAlphabeticalFilter(event) {
   if (filterButton.value === "Show films from A - Z") {
     alphabeticalFilter = films.alphabeticOrderFilter(allAnimations);
     filterButton.value = "Show films from Z - A";
-
     filterTypeLabel.innerHTML = "A - Z";
     filterTypeLabel.innerHTML = "Animations from A - Z";
   } else if (filterButton.value === "Show films from Z - A") {
@@ -198,7 +197,8 @@ function defineAlphabeticalFilter(event) {
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
 
 function showLocationByFilm(index) {
-  const locationsByFilm = films.filterLocationByFilm(allAnimations, index);
+  const chosenAnimation = allAnimations[index].locations;
+  const locationsByFilm = films.filterLocationByFilm(chosenAnimation);
 
   const parentDiv = document.querySelector(".bottom-info");
   const animationsTotal = document.createElement("div");
@@ -230,7 +230,9 @@ function showLocationByFilm(index) {
 // NOVA FUNCAO DE FILTRO DE VEÍCULOS POR FILME
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
 function showVehiclesByFilm(index) {
-  const vehiclesByFilm = films.filterVehiclesByFilm(allAnimations, index);
+  const chosenAnimation = allAnimations[index].vehicles;
+  const vehiclesByFilm = films.filterVehiclesByFilm(chosenAnimation);
+  
 
   const parentDiv = document.querySelector(".bottom-info");
   const divBackButton = document.createElement("div");

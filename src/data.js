@@ -11,10 +11,16 @@ export const films = {
     return dataFilmsCopy.sort((a, b) => b.title.localeCompare(a.title));
   },
 
-  filterCharacterByFilm: function filterCharacterByFilm (dataFilms, index)
+  alphabeticOrderCharFilter: function alphabeticOrderCharFilter(dataCharacters) {
+    const dataCharactersCopy = [...dataCharacters];
+   
+    return dataCharactersCopy.sort((a, b) => a.name.localeCompare(b.name));
+  },
+
+  filterCharacterByFilm: function filterCharacterByFilm (dataCharacters)
   {
-    const dataFilmsCopy = [...dataFilms];
-    return dataFilmsCopy[index].people;
+    const dataCharactersCopy = [dataCharacters];
+    return dataCharactersCopy;
     
   },
 

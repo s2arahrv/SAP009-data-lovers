@@ -182,12 +182,13 @@
     object-fit: cover;
     width: 20rem;
     height: 28rem;
-    padding-bottom: 2rem;
-    
+    padding-bottom: 2rem;    
     padding-top: 1.5rem;
   }
+
   
- 
+  /* MODAL DESCRIPTION */
+   
   #modal-wrapper {
     position: fixed;
     display: flex;
@@ -206,20 +207,20 @@
   #modal-wrapper.show {
     opacity: 1;
     pointer-events: auto;
-  
   }
+
   .modal {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: #fff;
     width: 60rem;
-    height: 42rem;
-    
+    height: 42rem;    
     overflow: auto;
     border: #e85b64;
     border-style: solid;
   }
+
   @media screen and (max-width: 600px) {
     .modal {
       display: flex;
@@ -384,4 +385,6 @@
     bottom: 0;
     width: 100%;
   }
-  
+  .new-class{
+    width: 20rem;
+  }
