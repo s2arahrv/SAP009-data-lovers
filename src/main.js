@@ -16,7 +16,6 @@ const animationCards = document.querySelector(".animation-cards");
 
 const modal_container = document.getElementById("modal-wrapper");
 
-
 showAnimations(allAnimations);
 
 function showAnimations(animationArray) {
@@ -43,7 +42,7 @@ function showAnimations(animationArray) {
       modal_container.classList.add("show");
       showDescription(dataList, index);
     });
-  });  
+  });
 }
 
 createElement();
@@ -57,7 +56,7 @@ function createElement() {
   animationsTotal.id = "label-total";
   // animationsTotal.classList.add("list-container");
   animationsTotal.classList.add("calc-result");
-  
+
   animationsTotal.innerHTML =
     "Total number of animations produced by Studio Ghibli: " +
     allAnimations.length;
@@ -76,18 +75,18 @@ function searchFilms() {
 //ESTAMOS USANDO ESSA FUNCAO PARA O MODAL
 function showDescription(dataList, index) {
   const chosenAnimation = dataList[index];
- 
+
   let imageURL = chosenAnimation.poster;
-    
+
   const xhr = new XMLHttpRequest();
   xhr.open("GET", imageURL);
   xhr.onload = function () {
     const imageStatus = xhr.status;
-  
-    if (imageStatus === 404) {    
-      imageURL = "./assets/studio-ghibli-logo-small.png";      
-    } else {    
-      imageURL = chosenAnimation.poster;      
+
+    if (imageStatus === 404) {
+      imageURL = "./assets/studio-ghibli-logo-small.png";
+    } else {
+      imageURL = chosenAnimation.poster;
     }
 
     const modalContainer = document.getElementById("modal-container");
@@ -145,31 +144,31 @@ function showDescription(dataList, index) {
       const characterButtonId = this.id;
       const index = characterButtonId.split("-").pop();
       modal_container.classList.remove("show");
-      const charactersFilmArray = dataList[index].people
-      showCharactersByFilm(charactersFilmArray, index, chosenAnimation);
+      const charactersFilmArray = dataList[index].people;
+      showCharactersByFilm(charactersFilmArray, chosenAnimation);
       filterTypeLabel.innerHTML = "Characters";
       filterButton.value = "Characters from A-Z";
-      
     });
 
     vehiclesButton.addEventListener("click", function () {
       const vehiclesButtonId = this.id;
       const index = vehiclesButtonId.split("-").pop();
       modal_container.classList.remove("show");
-      showVehiclesByFilm(index);
+      const vehiclesFilmArray = dataList[index].vehicles;
+      showVehiclesByFilm(vehiclesFilmArray);
     });
 
     locationsButton.addEventListener("click", function () {
       const locationsButtonId = this.id;
       const index = locationsButtonId.split("-").pop();
       modal_container.classList.remove("show");
-      showLocationByFilm(index);
+      const locationsFilmArray = dataList[index].locations;
+      showLocationByFilm(locationsFilmArray);
+      
     });
   };
 
   xhr.send();
-
-  
 }
 
 //essa função pode ser mudada para receber diferentes filtros e passar pra
@@ -182,7 +181,6 @@ function defineAlphabeticalFilter(event) {
   if (filterButton.value === "Show films from A - Z") {
     alphabeticalFilter = films.alphabeticOrderFilter(allAnimations);
     filterButton.value = "Show films from Z - A";
-    filterTypeLabel.innerHTML = "A - Z";
     filterTypeLabel.innerHTML = "Animations from A - Z";
   } else if (filterButton.value === "Show films from Z - A") {
     alphabeticalFilter = films.inverseAlphabeticOrderFilter(allAnimations);
@@ -190,15 +188,13 @@ function defineAlphabeticalFilter(event) {
     filterTypeLabel.innerHTML = "Animations from Z - A";
   }
   showAnimations(alphabeticalFilter);
-  
 }
-
 
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
 
-function showLocationByFilm(index) {
-  const chosenAnimation = allAnimations[index].locations;
-  const locationsByFilm = films.filterLocationByFilm(chosenAnimation);
+function showLocationByFilm(locationsArray) {
+  //const chosenAnimation = allAnimations[index].locations;
+  const locationsByFilm = films.filterLocationByFilm(locationsArray);
 
   const parentDiv = document.querySelector(".bottom-info");
   const animationsTotal = document.createElement("div");
@@ -229,10 +225,9 @@ function showLocationByFilm(index) {
 
 // NOVA FUNCAO DE FILTRO DE VEÍCULOS POR FILME
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
-function showVehiclesByFilm(index) {
-  const chosenAnimation = allAnimations[index].vehicles;
-  const vehiclesByFilm = films.filterVehiclesByFilm(chosenAnimation);
-  
+function showVehiclesByFilm(vehiclesArray) {
+  const vehiclesByFilm = films.filterVehiclesByFilm(vehiclesArray);
+  // const vehiclesByFilmArray = vehiclesArray[0];
 
   const parentDiv = document.querySelector(".bottom-info");
   const divBackButton = document.createElement("div");

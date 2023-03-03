@@ -14,6 +14,21 @@ const outputAlphabetical = [
   { title: "star", year: 2003 },
 ];
 
+const charInputOriginal = [
+  { name: "hope", year: 2023 },
+  { name: "chaos", year: 2018 },
+  { name: "star", year: 2003 },
+  { name: "coup", year: 2016 },
+];
+
+const charOutput = [
+  
+  { name: "chaos", year: 2018 },
+  { name: "coup", year: 2016 },
+  { name: "hope", year: 2023 },
+  { name: "star", year: 2003 },
+];
+
 const outputInverseAlphabetical = [
   { title: "star", year: 2003 },
   { title: "hope", year: 2023 },
@@ -21,7 +36,7 @@ const outputInverseAlphabetical = [
   { title: "chaos", year: 2018 },
 ];
 
-const charactersI = [
+const charactersInput = [
   {
     id: "575d6943-f9da-445e-8e77-e118c3924a1d",
     name: "Shoukichi",
@@ -34,7 +49,7 @@ const charactersI = [
   },
 ];
 
-const charactersO = [
+const charactersOutput = [
   {
     id: "575d6943-f9da-445e-8e77-e118c3924a1d",
     name: "Shoukichi",
@@ -47,7 +62,7 @@ const charactersO = [
   },
 ];
 
-const locationI = [
+const locationInput = [
   {
     id: "6ba60a86-7c74-4ec4-a6f4-7112b5705a2f",
     name: "Gondoa",
@@ -59,7 +74,7 @@ const locationI = [
   },
 ];
 
-const locationO = [
+const locationOutput = [
   {
     id: "6ba60a86-7c74-4ec4-a6f4-7112b5705a2f",
     name: "Gondoa",
@@ -71,7 +86,7 @@ const locationO = [
   },
 ];
 
-const vehiclesI = [
+const vehiclesInput = [
   {
     id: "d8f893b5-1dd9-41a1-9918-0099c1aa2de8",
     name: "Red Wing",
@@ -87,7 +102,7 @@ const vehiclesI = [
   },
 ];
 
-const vehiclesO = [
+const vehiclesOutput = [
   {
     id: "d8f893b5-1dd9-41a1-9918-0099c1aa2de8",
     name: "Red Wing",
@@ -139,19 +154,29 @@ describe("films.filterCharacterByFilm", () => {
   });
 
   it("is a object", () => {
-    expect(typeof charactersI).toBe("object");
+    expect(typeof charactersInput).toBe("object");
   });
 
   it("is a array", () => {
-    expect(Array.isArray(charactersI)).toBe(true);
+    expect(Array.isArray(charactersInput)).toBe(true);
   });
 
   it("returns an array with all characters info of the chosen film", () => {
-    expect(films.filterCharacterByFilm(charactersI)).toEqual(charactersO);
+    expect(films.filterCharacterByFilm(charactersInput)).toEqual(charactersOutput);
   });
 });
 
-// });
+describe("films.alphabeticalOrderCharacterFilter", () => {
+  it("is a function", () => {
+    expect(typeof films.alphabeticalOrderCharacterFilter).toBe("function");
+  });
+
+  it("returns an array in alphabetical order by character name", () => {
+    expect(films.alphabeticalOrderCharacterFilter(charInputOriginal)).toEqual(
+      charOutput
+    );
+  });
+});
 
 describe("films.filterLocationByFilm", () => {
   it("is a function", () => {
@@ -159,15 +184,15 @@ describe("films.filterLocationByFilm", () => {
   });
 
   it("is a object", () => {
-    expect(typeof locationO).toBe("object");
+    expect(typeof locationOutput).toBe("object");
   });
 
   it("is a array", () => {
-    expect(Array.isArray(locationO)).toBe(true);
+    expect(Array.isArray(locationOutput)).toBe(true);
   });
 
   it("returns an array with all locations info of the chosen film", () => {
-    expect(films.filterLocationByFilm(locationI)).toEqual(locationO);
+    expect(films.filterLocationByFilm(locationInput)).toEqual(locationOutput);
   });
 });
 
@@ -177,15 +202,15 @@ describe("films.filterVehiclesByFilm", () => {
   });
 
   it("is a object", () => {
-    expect(typeof vehiclesO).toBe("object");
+    expect(typeof vehiclesOutput).toBe("object");
   });
 
   it("is a array", () => {
-    expect(Array.isArray(vehiclesO)).toBe(true);
+    expect(Array.isArray(vehiclesOutput)).toBe(true);
   });
 
-  it("returns an array with all locations info of the chosen film", () => {
-    expect(films.filterVehiclesByFilm(vehiclesI)).toEqual(vehiclesO);
+  it("returns an array with all vehicles info of the chosen film", () => {
+    expect(films.filterVehiclesByFilm(vehiclesInput)).toEqual(vehiclesOutput);
   });
 });
 

@@ -3,26 +3,26 @@ import { films } from "./data.js";
 
 //const allAnimations = data.films;
 const animationCards = document.querySelector(".animation-cards");
+const filterTypeLabel = document.getElementById("label-filter-type");
+const filterButton = document.getElementById("filter-button");
+let charactersByFilm;
+let chosenAnimation;
+filterButton.addEventListener("click", () => {
+  defineAlphabeticalFilter();
+});
 
 export function showCharactersByFilm(
   charactersFilmArray,
-  index,
-  chosenAnimation
+  filmWithTheCharacter
 ) {
-  console.log(chosenAnimation);
-  // console.log(charactersFilmArray);
-  const charactersByFilm = films.filterCharacterByFilm(charactersFilmArray);
-  const characterByFilmArray = charactersByFilm[0];
-
-  const filterButton = document.getElementById("filter-button");
-  filterButton.addEventListener("click", () => {
-    defineAlphabeticalFilter(characterByFilmArray, index, chosenAnimation);
-  });
+  charactersByFilm = films.filterCharacterByFilm(charactersFilmArray);
+  chosenAnimation = filmWithTheCharacter;
   const animationsTotal = document.getElementById("label-total");
-  animationsTotal.innerHTML = `${chosenAnimation.title} has 
-  ${characterByFilmArray.length} characters`;
-  //
-  const charactersAnimationCards = charactersFilmArray
+  animationsTotal.innerHTML = `This ${chosenAnimation.title} animation has
+  ${charactersByFilm.length} characters`;
+
+  const charactersAnimationCards = charactersByFilm
+
     .map((element) => {
       return `
   
@@ -44,22 +44,27 @@ export function showCharactersByFilm(
         </div>    
    </div>   
   `;
-    
     })
     .join("");
-  
 
   animationCards.innerHTML = charactersAnimationCards;
 
+  return chosenAnimation;
 }
 
-function defineAlphabeticalFilter(charactersByFilm, index, chosenAnimation) {
-  const charactersFilmArrayAlphabeticOrder =
-    films.alphabeticOrderCharFilter(charactersByFilm);
-  // const chosenAnimation = allAnimations;
-  showCharactersByFilm(
-    charactersFilmArrayAlphabeticOrder,
-    index,
-    chosenAnimation
-  );
+function defineAlphabeticalFilter() {
+  let charactersFilmArrayAlphabeticOrder = charactersByFilm;
+  if (filterButton.value === "Characters from A-Z") {
+    charactersFilmArrayAlphabeticOrder =
+      films.alphabeticalOrderCharacterFilter(charactersByFilm);
+    filterTypeLabel.innerHTML = "Characters from A-Z";
+    filterButton.value = "Characters from Z-A";
+  } else if (filterTypeLabel.innerHTML === "Characters from A-Z") {
+    charactersFilmArrayAlphabeticOrder =
+      films.inverseAlphabeticalOrderCharacterFilter(charactersByFilm);
+    //console.log(charactersFilmArrayAlphabeticOrder);
+    filterTypeLabel.innerHTML = "Characters from Z-A";
+    filterButton.value = "Characters from A-Z";
+  }
+  showCharactersByFilm(charactersFilmArrayAlphabeticOrder, chosenAnimation);
 }
