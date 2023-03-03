@@ -1,15 +1,14 @@
-//import data from "./data/ghibli/ghibli.js";
 import { films } from "./data.js";
 
-//const allAnimations = data.films;
 const animationCards = document.querySelector(".animation-cards");
 const filterTypeLabel = document.getElementById("label-filter-type");
 const filterButton = document.getElementById("filter-button");
-let charactersByFilm;
-let chosenAnimation;
 filterButton.addEventListener("click", () => {
   defineAlphabeticalFilter();
 });
+let charactersByFilm;
+let chosenAnimation;
+
 
 export function showCharactersByFilm(
   charactersFilmArray,
@@ -17,8 +16,8 @@ export function showCharactersByFilm(
 ) {
   charactersByFilm = films.filterCharacterByFilm(charactersFilmArray);
   chosenAnimation = filmWithTheCharacter;
-  const animationsTotal = document.getElementById("label-total");
-  animationsTotal.innerHTML = `This ${chosenAnimation.title} animation has
+  const charactersTotal = document.getElementById("label-total");
+  charactersTotal.innerHTML = `This ${chosenAnimation.title} animation has
   ${charactersByFilm.length} characters`;
 
   const charactersAnimationCards = charactersByFilm
@@ -48,6 +47,18 @@ export function showCharactersByFilm(
     .join("");
 
   animationCards.innerHTML = charactersAnimationCards;
+
+  // const parentDiv = document.querySelector(".bottom-info");
+  // const animationsTotal = document.createElement("div");
+  // animationsTotal.classList.add("list-container");
+  // animationsTotal.innerHTML = `<input type="submit" id="back-button" class="filter-button buttons" value="Back"/>`;
+
+  // parentDiv.appendChild(animationsTotal);
+  // const backButton = document.querySelector("#back-button");
+  // backButton.addEventListener("click", () => {
+  //   history.pushState(null, null, document.referrer);
+  //   window.location.reload();
+  // });
 
   return chosenAnimation;
 }

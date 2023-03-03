@@ -230,11 +230,11 @@ function showVehiclesByFilm(vehiclesArray) {
   // const vehiclesByFilmArray = vehiclesArray[0];
 
   const parentDiv = document.querySelector(".bottom-info");
-  const divBackButton = document.createElement("div");
-  divBackButton.classList.add("list-container");
-  divBackButton.innerHTML = `<button id="back-button">Go Back</button>`;
-  parentDiv.appendChild(divBackButton);
+  const animationsTotal = document.createElement("div");
+  animationsTotal.classList.add("list-container");
+  animationsTotal.innerHTML = `<input type="submit" id="back-button" class="filter-button buttons" value="Back"/>`;
 
+  parentDiv.appendChild(animationsTotal);
   const backButton = document.querySelector("#back-button");
   backButton.addEventListener("click", () => {
     history.pushState(null, null, document.referrer);
@@ -251,6 +251,7 @@ function showVehiclesByFilm(vehiclesArray) {
           <p class="film-info">${element.description}</p>
           <p class="film-info">${element.vehicle_class}</p>
           <p class="film-info">${element.length}</p>
+          
           
         </div>
       `;
