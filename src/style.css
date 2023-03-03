@@ -137,8 +137,8 @@ main {
 
 .filter-type {
   display: flex;
-  padding-left: 6rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: #1c6773; 
 }
 
@@ -352,9 +352,8 @@ main {
 
 .card-back {
   transform: rotateY(180deg);
-  border: .5rem;
-  /* width: 20rem;
-  height: 31.4rem;  */
+  border: .5rem;  
+  height: 31.4rem; 
 }
 
 .card-back img {
@@ -400,4 +399,7 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
+}
+.new-class{
+  width: 200rem;
 }

@@ -11,39 +11,48 @@ export const films = {
     return dataFilmsCopy.sort((a, b) => b.title.localeCompare(a.title));
   },
 
-  filterCharacterByFilm: function filterCharacterByFilm (dataFilms, index)
-  {
-    const dataFilmsCopy = [...dataFilms];
-    return dataFilmsCopy[index].people;
-    
+  alphabeticalOrderCharacterFilter: function alphabeticalOrderCharacterFilter(
+    dataCharacters
+  ) {    
+    const dataCharactersCopy = [...dataCharacters];
+    return  dataCharactersCopy.sort((a, b) => a.name.localeCompare(b.name));
+  },
+  inverseAlphabeticalOrderCharacterFilter: function inverseAlphabeticalOrderCharacterFilter(
+    dataCharacters
+  ) {    
+    const dataCharactersCopy = [...dataCharacters];
+    return  dataCharactersCopy.sort((a, b) => b.name.localeCompare(a.name));
   },
 
-  filterLocationByFilm: function filterLocationByFilm (dataFilms, index)
-  {
-    const dataFilmsCopy = [...dataFilms];
-    return dataFilmsCopy[index].locations;
-  },
-  filterVehiclesByFilm: function filterVehiclesByFilm (dataFilms, index)
-  {
-    const dataFilmsCopy = [...dataFilms];
-    return dataFilmsCopy[index].vehicles;  
+  
+
+  filterCharacterByFilm: function filterCharacterByFilm(dataCharacters) {
+    const dataCharactersCopy = [...dataCharacters];
+    // console.log(typeof [...dataCharacters]);
+    return dataCharactersCopy;
   },
 
-  filterBySearchInput: function filterBySearchInput (films, input)
-  {
+  filterLocationByFilm: function filterLocationByFilm(dataVehicles) {
+    const dataFilmsCopy = [...dataVehicles];
+    return dataFilmsCopy;
+  },
+
+  filterVehiclesByFilm: function filterVehiclesByFilm(dataFilms) {
+    const dataFilmsCopy = [...dataFilms];
+    return dataFilmsCopy;
+  },
+
+  filterBySearchInput: function filterBySearchInput(films, input) {
     const filteredCards = [];
     const searchTerm = input.toUpperCase();
     for (let i = 0; i < films.length; i++) {
       const titles = films[i].title;
- 
+
       if (titles.toUpperCase().includes(searchTerm)) {
-      
         filteredCards.push(films[i]);
       }
     }
-  
+
     return filteredCards;
-  }
-
+  },
 };
-
