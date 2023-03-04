@@ -63,4 +63,15 @@ export const films = {
     console.log(filmesFiltrados);
     return filmesFiltrados;
   },
+
+  filterDrop2: function filterDrop2(dataFilms, key,value) {
+    const dataFilmsCopy = [...dataFilms];
+
+  //  console.log(key);
+    const filmesFiltrados = dataFilmsCopy.filter(
+      (filme) => filme[key] === value
+    );
+    console.log(filmesFiltrados);
+    return filmesFiltrados;
+  },
 };

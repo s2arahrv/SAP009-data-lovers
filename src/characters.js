@@ -1,5 +1,6 @@
 import { films } from "./data.js";
 
+import data from "./data/ghibli/ghibli.js";
 const animationCards = document.querySelector(".animation-cards");
 const filterTypeLabel = document.getElementById("label-filter-type");
 const filterButton = document.getElementById("filter-button");
@@ -8,7 +9,6 @@ filterButton.addEventListener("click", () => {
 });
 let charactersByFilm;
 let chosenAnimation;
-
 
 export function showCharactersByFilm(
   charactersFilmArray,
@@ -78,4 +78,42 @@ function defineAlphabeticalFilter() {
     filterButton.value = "Characters from A-Z";
   }
   showCharactersByFilm(charactersFilmArrayAlphabeticOrder, chosenAnimation);
+}
+
+// function getAllValuesBy(dataFilms, key) {
+//   const values = dataFilms
+//     .filter((film) => film[key] !== undefined)
+//     .map((film) => film[key]);
+//   const arraySemRepetidos = [...new Set(values)];
+//   console.log(arraySemRepetidos);
+//   return arraySemRepetidos;
+// }
+
+export function showAllCharacters() {
+  const dataList = data.films;
+  let animationData;
+
+  animationData = dataList.flatMap((film) =>
+    film.people.map((character) => character)
+  );
+  console.log(animationData);
+
+  let animationDatass = animationData
+    .map(
+      (char, index) =>
+        `
+      <div class="cards">
+      <p id="film-title" class="film-info-title">${char.name} </p>
+      <img id="${index}" class="posters" src="${char.img}" alt="Pôster de ${char.name}">
+      <p id="film-title" class="film-info-title">${char.age} </p>
+      
+      </div>
+      `
+    )
+    .join("");
+
+  animationCards.innerHTML = animationDatass;
+  const charactersTotal = document.getElementById("label-total");
+  charactersTotal.innerHTML = ` animation has
+  ${charactersByFilm.length} characters`;
 }

@@ -1,6 +1,5 @@
-import data from "./data/ghibli/ghibli.js";
-import { films } from "./data.js";
-import { showCharactersByFilm } from "./characters.js";
+import data from "./data/ghibli/ghibli.js";import { films } from "./data.js";
+import { showCharactersByFilm, showAllCharacters } from "./characters.js";
 
 const allAnimations = data.films;
 
@@ -271,34 +270,21 @@ dropdown.onclick = function () {
 const mySelect = document.getElementById("mySelect");
 
 frop();
-function frop(){
-const items = ["Option 1", "Option 2", "Option 3"];
+function frop() {
 
-// Loop através dos itens da array e adiciona uma opção para cada um
-for (let i = 0; i < items.length; i++) {
-  const option = document.createElement("option"); // Cria um elemento option
-  option.text = items[i]; // Define o texto da opção
-  option.value = items[i]; // Define o valor da opção
-  mySelect.add(option); // Adiciona a opção ao select
-}
-//const mySelect = document.getElementById("mySelect");
-}
-mySelect.addEventListener("change", (event) => {
-  const selectedValue = event.target.value;
-  const selectedKey =
-    event.target.options[event.target.selectedIndex].getAttribute("key");
-  // const selectedKey = event.target.options[event.target.selectedIndex].dataset.key;
-  console.log(`Selected value: ${selectedKey}`);
- // const items = getAllValuesByKey(allAnimations, selectedKey);
- // console.log(items);
+  const items = getAllValuesByKey(allAnimations, "director");
+console.log(items);
   // Loop através dos itens da array e adiciona uma opção para cada um
- 
-
-  const lula = films.filterDrop(allAnimations, selectedKey, selectedValue);
-  console.log(lula);
-  showAnimations(lula);
-});
-
+  for (let i = 0; i < items.length; i++) {
+    const option = document.createElement("option"); // Cria um elemento option
+    option.text = items[i]; // Define o texto da opção
+    option.value = items[i]; // Define o valor da opção
+    option.setAttribute('key', 'director'); // Define o valor da chave
+   // option.key = "director"; // Define o valor da opção
+    mySelect.add(option); // Adiciona a opção ao select
+  }
+  //const mySelect = document.getElementById("mySelect");
+}
 function getAllValuesByKey(dataFilms, key) {
   const values = dataFilms
     .filter((film) => film[key] !== undefined)
@@ -307,3 +293,28 @@ function getAllValuesByKey(dataFilms, key) {
   console.log(arraySemRepetidos);
   return arraySemRepetidos;
 }
+
+mySelect.addEventListener("change", (event) => {
+  const selectedValue = event.target.value;
+  const selectedKey =
+    event.target.options[event.target.selectedIndex].getAttribute("key");
+  // const selectedKey = event.target.options[event.target.selectedIndex].dataset.key;
+  console.log(`Selected value: ${selectedKey}`);
+  // const items = getAllValuesByKey(allAnimations, selectedKey);
+  // console.log(items);
+  // Loop através dos itens da array e adiciona uma opção para cada um
+console.log(selectedKey);
+  const lula = films.filterDrop(allAnimations, selectedKey, selectedValue);
+  console.log(lula);
+  showAnimations(lula);
+});
+
+//fazer nova funcao q mostra todos os personagesn de toos os filmes
+//esse pega so do filme 0
+//laco for igual dos diretores:
+//igual drop down maroto
+const di = document.getElementById("directors");
+const m = allAnimations[0].people;
+di.addEventListener("click", showAllCharacters());
+
+
