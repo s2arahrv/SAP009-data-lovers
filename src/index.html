@@ -8,21 +8,53 @@
   <body>
     <div class="wrapper">
       <header>
-       
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
         <div class="title">
-          <a href="index.html">  <h1>STUDIO GHIBLI DATA LOVERS</h1>
-          <h2>Discover all the studio's animations</h2></a>
+          <a href="index.html">
+            <h1>STUDIO GHIBLI DATA LOVERS</h1>
+            <h2>Discover all the studio's animations</h2></a
+          >
         </div>
         <div id="image-logo">
-          <a href="index.html">   <img
-            id="logo"
-            src="./assets/studio-ghibli-logo.png"
-            alt="studio ghibli logo"
+          <a href="index.html">
+            <img
+              id="logo"
+              src="./assets/studio-ghibli-logo.png"
+              alt="studio ghibli logo"
           /></a>
         </div>
       </header>
       <main>
-        <div class="top-info">         
+        <div class="top-info">
+          <div>
+            <select id="mySelect">
+              <option disabled selected>Escolha um item:</option>
+              <option key="director" value="Isao Takahata">Totoro</option>
+              <option key="producer" value="Isao Takahata">
+                Isao Takahata
+              </option>
+            </select>
+          </div>
+
+          <div class="dropdown">
+            <input
+              class="text-box"
+              type="text"
+              placeholder="Select on"
+              readonly
+            />
+            <div class="options">
+              <div onclick="show('HTML')">HTML</div>
+              <div onclick="show('CSS')">CSS</div>
+            </div>
+          </div>
+
           <div class="buttons" id="buttons">
             <input
               type="submit"
@@ -31,27 +63,24 @@
               value="Show films from A - Z"
             />
             <input
-            type="text"
-            name=""
-            class="filter-inputs buttons"
-            id="filter-name-input"
-            placeholder="Search by name"
-          />
-          </div>          
-        </div>
-       <div class="bottom-info">
-        <div class="filter-type">
-          <label id="label-filter-type">Animations by Release Date</label>
-        </div>
-       </div>          
-        <div class="animation-cards">
+              type="text"
+              name=""
+              class="filter-inputs buttons"
+              id="filter-name-input"
+              placeholder="Search by name"
+            />
           </div>
-          
-          <div id="modal-wrapper">
-            <div id="modal-container">
-              
-            </div>
+        </div>
+        <div class="bottom-info">
+          <div class="filter-type">
+            <label id="label-filter-type">Animations by Release Date</label>
           </div>
+        </div>
+        <div class="animation-cards"></div>
+
+        <div id="modal-wrapper">
+          <div id="modal-container"></div>
+        </div>
       </main>
     </div>
     <footer>Data Lovers - Laboratória 2023</footer>

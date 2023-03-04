@@ -164,7 +164,6 @@ function showDescription(dataList, index) {
       modal_container.classList.remove("show");
       const locationsFilmArray = dataList[index].locations;
       showLocationByFilm(locationsFilmArray);
-      
     });
   };
 
@@ -259,4 +258,52 @@ function showVehiclesByFilm(vehiclesArray) {
     .join("");
 
   animationCards.innerHTML = vehiclesAnimationCards;
+}
+
+function show(value) {
+  document.querySelector(".text-box").value = value;
+}
+
+let dropdown = document.querySelector(".dropdown");
+dropdown.onclick = function () {
+  dropdown.classList.toggle("active");
+};
+const mySelect = document.getElementById("mySelect");
+
+frop();
+function frop(){
+const items = ["Option 1", "Option 2", "Option 3"];
+
+// Loop através dos itens da array e adiciona uma opção para cada um
+for (let i = 0; i < items.length; i++) {
+  const option = document.createElement("option"); // Cria um elemento option
+  option.text = items[i]; // Define o texto da opção
+  option.value = items[i]; // Define o valor da opção
+  mySelect.add(option); // Adiciona a opção ao select
+}
+//const mySelect = document.getElementById("mySelect");
+}
+mySelect.addEventListener("change", (event) => {
+  const selectedValue = event.target.value;
+  const selectedKey =
+    event.target.options[event.target.selectedIndex].getAttribute("key");
+  // const selectedKey = event.target.options[event.target.selectedIndex].dataset.key;
+  console.log(`Selected value: ${selectedKey}`);
+ // const items = getAllValuesByKey(allAnimations, selectedKey);
+ // console.log(items);
+  // Loop através dos itens da array e adiciona uma opção para cada um
+ 
+
+  const lula = films.filterDrop(allAnimations, selectedKey, selectedValue);
+  console.log(lula);
+  showAnimations(lula);
+});
+
+function getAllValuesByKey(dataFilms, key) {
+  const values = dataFilms
+    .filter((film) => film[key] !== undefined)
+    .map((film) => film[key]);
+  const arraySemRepetidos = [...new Set(values)];
+  console.log(arraySemRepetidos);
+  return arraySemRepetidos;
 }

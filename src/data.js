@@ -13,18 +13,15 @@ export const films = {
 
   alphabeticalOrderCharacterFilter: function alphabeticalOrderCharacterFilter(
     dataCharacters
-  ) {    
+  ) {
     const dataCharactersCopy = [...dataCharacters];
-    return  dataCharactersCopy.sort((a, b) => a.name.localeCompare(b.name));
+    return dataCharactersCopy.sort((a, b) => a.name.localeCompare(b.name));
   },
-  inverseAlphabeticalOrderCharacterFilter: function inverseAlphabeticalOrderCharacterFilter(
-    dataCharacters
-  ) {    
-    const dataCharactersCopy = [...dataCharacters];
-    return  dataCharactersCopy.sort((a, b) => b.name.localeCompare(a.name));
-  },
-
-  
+  inverseAlphabeticalOrderCharacterFilter:
+    function inverseAlphabeticalOrderCharacterFilter(dataCharacters) {
+      const dataCharactersCopy = [...dataCharacters];
+      return dataCharactersCopy.sort((a, b) => b.name.localeCompare(a.name));
+    },
 
   filterCharacterByFilm: function filterCharacterByFilm(dataCharacters) {
     const dataCharactersCopy = [...dataCharacters];
@@ -54,5 +51,16 @@ export const films = {
     }
 
     return filteredCards;
+  },
+
+  filterDrop: function filterDrop(dataFilms, key,value) {
+    const dataFilmsCopy = [...dataFilms];
+
+  //  console.log(key);
+    const filmesFiltrados = dataFilmsCopy.filter(
+      (filme) => filme[key] === value
+    );
+    console.log(filmesFiltrados);
+    return filmesFiltrados;
   },
 };
