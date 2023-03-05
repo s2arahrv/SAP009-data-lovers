@@ -96,18 +96,32 @@ Studio Ghibli Data Lovers é um site que fornece diversas informações sobre as
 
 ## 4. Histórias de usuário 
 
+![Primeira-história](./src/assets/user_stories/historia-1.jpg)
+
+![Segunda-história](./src/assets/user_stories/historia-2.jpg)
 
 ## 5 Protótipos do produto
 
 ## 5.1 Primeiro protótipo
 
-![Primeiro-protótipo](src/assets/prototypes/first-prototype.jpg)
+![Primeiro-protótipo](./src/assets/prototypes/first-prototype.jpg)
 
 ## 5.2 Protótipo de alta fidelidade
 
-![Ideias-para-o-protótipo](./src/assets/prototypes/prototype-ideas.jpg)
+Protótipo de alta fidelidade feito no figma
 ![!Último-protótipo](./src/assets/prototypes/final-prototype.jpg)
+
+Protótipo do modal com mais informações sobre os filmes
 ![!Modal-protótipo](./src/assets/prototypes/modal-prototype.jpg)
+
+Ideias para o protótipo dos filtros
+![Ideias-para-o-protótipo](./src/assets/prototypes/prototype-ideas.jpg)
+
+## 6. Testes de usabilidade
+
+Durante os testes de usabilidade realizados, encontramos alguns problemas como:
+
+1.
 
 ## 3. Objetivos de aprendizagem
 
