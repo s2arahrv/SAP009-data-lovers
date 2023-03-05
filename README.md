@@ -105,9 +105,9 @@ Studio Ghibli Data Lovers é um site que fornece diversas informações sobre as
 
 ## 5.2 Protótipo de alta fidelidade
 
-[!Ideias-para-o-protótipo](src/assets/prototypes/prototype-ideas.jpg)
-[!Último-protótipo](src/assets/prototypes/final-prototype.jpg)
-[!Modal-protótipo](src/assets/prototypes/modal-prototype.jpg)
+[!Ideias-para-o-protótipo](./src/assets/prototypes/prototype-ideas.jpg)
+[!Último-protótipo](./src/assets/prototypes/final-prototype.jpg)
+[!Modal-protótipo](./src/assets/prototypes/modal-prototype.jpg)
 
 ## 3. Objetivos de aprendizagem
 
