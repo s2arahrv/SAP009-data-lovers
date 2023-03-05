@@ -90,6 +90,25 @@ O objetivo principal deste projeto é que aprenda a desenhar e construir uma
 interface web onde se possa visualizar e manipular dados, entendendo o que o
 usuário necessita.
 
+## 3. Sobre o produto 
+
+Studio Ghibli Data Lovers é um site que fornece diversas informações sobre as animações feitas por Studio Ghibli. É possível encontrar todos os filmes, assim como sua sinopse, seus produtores e diretores, e personagens, lugares e veículos encontrados em cada animação. O propósito do produto é ajudar usuários que queiram conhecer melhor as animações do estúdio, seja simplesmente por curiosidade, para encontrar uma animação que queira assistir, para uma pesquisa, etc.
+
+## 4. Histórias de usuário 
+
+
+## 5 Protótipos do produto
+
+## 5.1 Primeiro protótipo
+
+[!Primeiro-protótipo](src/assets/prototypes/first-prototype.jpg)
+
+## 5.2 Protótipo de alta fidelidade
+
+[!Ideias-para-o-protótipo](src/assets/prototypes/prototype-ideas.jpg)
+[!Último-protótipo](src/assets/prototypes/final-prototype.jpg)
+[!Modal-protótipo](src/assets/prototypes/modal-prototype.jpg)
+
 ## 3. Objetivos de aprendizagem
 
 Reflita e depois enumere os objetivos que quer alcançar e aplique no seu projeto. Pense nisso para decidir sua estratégia de trabalho.
