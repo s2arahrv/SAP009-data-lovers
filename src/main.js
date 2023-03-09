@@ -246,7 +246,6 @@ function showLocationByFilm(locationsArray) {
 // PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
 function showVehiclesByFilm(vehiclesArray) {
   const vehiclesByFilm = films.filterVehiclesByFilm(vehiclesArray);
-  // const vehiclesByFilmArray = vehiclesArray[0];
 
   const parentDiv = document.querySelector(".bottom-info");
   const animationsTotal = document.createElement("div");
@@ -269,7 +268,6 @@ function showVehiclesByFilm(vehiclesArray) {
           <p id="film-title" class="film-info">${element.name}</p>
           <p class="film-info-description">${element.description}</p>
           <p class="film-info">Class: ${element.vehicle_class}</p>
-          <p class="film-info">Length: ${element.length}</p>
           
           
         </div>
