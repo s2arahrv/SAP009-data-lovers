@@ -7,8 +7,10 @@ const filterButton = document.getElementById("filter-button");
 filterButton.addEventListener("click", () => {
   defineAlphabeticalFilter();
 });
+
 let charactersByFilm;
 let chosenAnimation;
+
 
 export function showCharactersByFilm(
   charactersFilmArray,
@@ -17,7 +19,7 @@ export function showCharactersByFilm(
   charactersByFilm = films.filterCharacterByFilm(charactersFilmArray);
   chosenAnimation = filmWithTheCharacter;
   const charactersTotal = document.getElementById("label-total");
-  charactersTotal.innerHTML = `This ${chosenAnimation.title} animation has
+  charactersTotal.innerHTML = `${chosenAnimation.title} animation has
   ${charactersByFilm.length} characters`;
 
   const charactersAnimationCards = charactersByFilm
@@ -48,18 +50,6 @@ export function showCharactersByFilm(
 
   animationCards.innerHTML = charactersAnimationCards;
 
-  // const parentDiv = document.querySelector(".bottom-info");
-  // const animationsTotal = document.createElement("div");
-  // animationsTotal.classList.add("list-container");
-  // animationsTotal.innerHTML = `<input type="submit" id="back-button" class="filter-button buttons" value="Back"/>`;
-
-  // parentDiv.appendChild(animationsTotal);
-  // const backButton = document.querySelector("#back-button");
-  // backButton.addEventListener("click", () => {
-  //   history.pushState(null, null, document.referrer);
-  //   window.location.reload();
-  // });
-
   return chosenAnimation;
 }
 
@@ -77,43 +67,31 @@ function defineAlphabeticalFilter() {
     filterTypeLabel.innerHTML = "Characters from Z-A";
     filterButton.value = "Characters from A-Z";
   }
-  showCharactersByFilm(charactersFilmArrayAlphabeticOrder, chosenAnimation);
+  showCharactersByFilm(charactersFilmArrayAlphabeticOrder, chosenAnimation);  
 }
-
-// function getAllValuesBy(dataFilms, key) {
-//   const values = dataFilms
-//     .filter((film) => film[key] !== undefined)
-//     .map((film) => film[key]);
-//   const arraySemRepetidos = [...new Set(values)];
-//   console.log(arraySemRepetidos);
-//   return arraySemRepetidos;
-// }
 
 export function showAllCharacters() {
   const dataList = data.films;
-  let animationData;
-
-  animationData = dataList.flatMap((film) =>
+  const animationData = dataList.flatMap((film) =>
     film.people.map((character) => character)
   );
-  console.log(animationData);
 
-  let animationDatass = animationData
+  const characterData = animationData
     .map(
       (char, index) =>
         `
       <div class="cards">
-      <p id="film-title" class="film-info-title">${char.name} </p>
       <img id="${index}" class="posters" src="${char.img}" alt="Pôster de ${char.name}">
-      <p id="film-title" class="film-info-title">${char.age} </p>
+      <p id="film-title" class="film-info-title">${char.name} </p>
+      <p id="film-title" class="film-info-title">Specie: ${char.specie} </p>
       
       </div>
       `
     )
     .join("");
 
-  animationCards.innerHTML = animationDatass;
-  const charactersTotal = document.getElementById("label-total");
-  charactersTotal.innerHTML = ` animation has
-  ${charactersByFilm.length} characters`;
+  animationCards.innerHTML = characterData;
+  const animationTotal = document.getElementById("label-total");
+  animationTotal.innerHTML = `Studio Ghibli has ${animationData.length} characters`;
+  filterTypeLabel.innerHTML  = "All characters"
 }

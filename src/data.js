@@ -53,25 +53,10 @@ export const films = {
     return filteredCards;
   },
 
-  filterDrop: function filterDrop(dataFilms, key,value) {
+  filterByDirector: function filterByDirector(dataFilms, key, value) {
     const dataFilmsCopy = [...dataFilms];
+    const filteredFilms = dataFilmsCopy.filter((film) => film[key] === value);
 
-  //  console.log(key);
-    const filmesFiltrados = dataFilmsCopy.filter(
-      (filme) => filme[key] === value
-    );
-    console.log(filmesFiltrados);
-    return filmesFiltrados;
-  },
-
-  filterDrop2: function filterDrop2(dataFilms, key,value) {
-    const dataFilmsCopy = [...dataFilms];
-
-  //  console.log(key);
-    const filmesFiltrados = dataFilmsCopy.filter(
-      (filme) => filme[key] === value
-    );
-    console.log(filmesFiltrados);
-    return filmesFiltrados;
+    return filteredFilms;
   },
 };

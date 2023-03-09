@@ -8,13 +8,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <nav>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#" id="directors">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </nav>
+      
         <div class="title">
           <a href="index.html">
             <h1>STUDIO GHIBLI DATA LOVERS</h1>
@@ -33,29 +27,21 @@
       <main>
         <div class="top-info">
           <div>
-            <select id="mySelect">
-              <option disabled selected>Escolha um Diretor:</option>
-              <option key="director" value="Isao Takahata">Totoro</option>
-              <option key="producer" value="Isao Takahata">
-                Isao Takahata
-              </option>
+            <select id="drop-director" class=" buttons filter-button">
+              <option disabled selected>Choose a Director:</option>
+            
+              
             </select>
           </div>
 
-          <div class="dropdown">
-            <input
-              class="text-box"
-              type="text"
-              placeholder="Select on"
-              readonly
-            />
-            <div class="options">
-              <div onclick="show('HTML')">HTML</div>
-              <div onclick="show('CSS')">CSS</div>
-            </div>
-          </div>
-
+        
           <div class="buttons" id="buttons">
+            <input
+            type="submit"
+            id="filter-button-character"
+            class="filter-button-char buttons"
+            value="Show all characters"
+          />
             <input
               type="submit"
               id="filter-button"
