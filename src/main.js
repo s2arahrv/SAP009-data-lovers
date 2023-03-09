@@ -268,6 +268,7 @@ function showVehiclesByFilm(vehiclesArray) {
           <p id="film-title" class="film-info">${element.name}</p>
           <p class="film-info-description">${element.description}</p>
           <p class="film-info">Class: ${element.vehicle_class}</p>
+          <p class="film-info">Length: ${element.length}</p>
           
           
         </div>
