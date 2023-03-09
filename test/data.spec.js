@@ -7,6 +7,16 @@ const inputOriginal = [
   { title: "coup", year: 2016 },
 ];
 
+const directorFilmsInput = [
+  { title: "hope", year: 2023, director: "Hiroyuki Morita" },  
+  { title: "star", year: 2003, director: "Hiroyuki Morita" },
+];
+
+const directorFilmsOutput = [
+  { title: "hope", year: 2023, director: "Hiroyuki Morita" },
+  { title: "star", year: 2003, director: "Hiroyuki Morita" },
+];
+
 const outputAlphabetical = [
   { title: "chaos", year: 2018 },
   { title: "coup", year: 2016 },
@@ -22,7 +32,6 @@ const charInputOriginal = [
 ];
 
 const charOutput = [
-  
   { name: "chaos", year: 2018 },
   { name: "coup", year: 2016 },
   { name: "hope", year: 2023 },
@@ -162,7 +171,9 @@ describe("films.filterCharacterByFilm", () => {
   });
 
   it("returns an array with all characters info of the chosen film", () => {
-    expect(films.filterCharacterByFilm(charactersInput)).toEqual(charactersOutput);
+    expect(films.filterCharacterByFilm(charactersInput)).toEqual(
+      charactersOutput
+    );
   });
 });
 
@@ -225,5 +236,25 @@ describe("films.filterBySearchInput", () => {
 
     expect(result.length).toEqual(1);
     expect(result[0].title).toEqual(input);
+  });
+});
+
+describe("films.filterByDirector", () => {
+  it("is a function", () => {
+    expect(typeof films.filterByDirector).toBe("function");
+  });
+
+  it("is a object", () => {
+    expect(typeof directorFilmsOutput).toBe("object");
+  });
+
+  it("is a array", () => {
+    expect(Array.isArray(directorFilmsOutput)).toBe(true);
+  });
+
+  it("returns an array with all films of the chosen director", () => {
+    expect(films.filterByDirector(directorFilmsInput)).toEqual(
+      directorFilmsOutput
+    );
   });
 });

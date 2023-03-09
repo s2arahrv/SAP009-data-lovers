@@ -1,13 +1,22 @@
 import data from "./data/ghibli/ghibli.js";
 import { films } from "./data.js";
-import { showCharactersByFilm } from "./characters.js";
+import { showCharactersByFilm, showAllCharacters } from "./characters.js";
 
 const allAnimations = data.films;
 
 const filterButton = document.getElementById("filter-button");
 filterButton.addEventListener("click", defineAlphabeticalFilter);
 
+const showAllCharactersButton = document.getElementById(
+  "filter-button-character"
+);
+showAllCharactersButton.addEventListener("click", showAllCharacters);
+
+const characterAZButton = document.getElementById("filter-button-character");
+
 const filterTypeLabel = document.getElementById("label-filter-type");
+
+const animationTotal = document.querySelectorAll("#label-total");
 
 const searchInput = document.getElementById("filter-name-input");
 searchInput.addEventListener("keyup", searchFilms);
@@ -46,9 +55,7 @@ function showAnimations(animationArray) {
 }
 
 createElement();
-// INICIO DA IDEIA DE CALCULO AGREGADO
-// STATUS: FUNCIONA
-// SUGESTAO PRECISA IR UM PEDAÇO PRA DATA.JS / pode ser chamada por eventlistener (aí tirar linha 151))
+
 function createElement() {
   const parentDiv = document.querySelector(".bottom-info");
   const childDiv = document.querySelector(".filter-type");
@@ -96,7 +103,7 @@ function showDescription(dataList, index) {
   <div class="modal-side-left">
   <img id="${index}" class="posters" src="${imageURL}" alt="Pôster de ${chosenAnimation.title}">
   <p class="modal-title">${chosenAnimation.title}</p>
-  <p class="film-info">Director: ${chosenAnimation.director}<br>Producer: ${chosenAnimation.producer}<br>Release: ${chosenAnimation.release_date}<br>RT Score: ${chosenAnimation.rt_score}</p>
+  <p class="film-info">Director: ${chosenAnimation.director}<br>Producer: ${chosenAnimation.producer}<br>Release Date: ${chosenAnimation.release_date}<br>Rotten Tomatoes Score: ${chosenAnimation.rt_score}</p>
   </div>
   <div class="modal-side-right">
   <p class="modal-title">Synopsis</p>
@@ -139,6 +146,8 @@ function showDescription(dataList, index) {
     if (locationsArray.length > 0) {
       locationsButton.classList.add("show");
     }
+    const calcLabel = document.getElementById("label-total");
+    calcLabel.classList.add("list-container");
 
     characterButton.addEventListener("click", function () {
       const characterButtonId = this.id;
@@ -156,6 +165,8 @@ function showDescription(dataList, index) {
       modal_container.classList.remove("show");
       const vehiclesFilmArray = dataList[index].vehicles;
       showVehiclesByFilm(vehiclesFilmArray);
+      filterTypeLabel.innerHTML = `Vehicles from ${dataList[index].title}`;
+      calcLabel.innerHTML = ``;
     });
 
     locationsButton.addEventListener("click", function () {
@@ -164,8 +175,12 @@ function showDescription(dataList, index) {
       modal_container.classList.remove("show");
       const locationsFilmArray = dataList[index].locations;
       showLocationByFilm(locationsFilmArray);
-      
+      filterTypeLabel.innerHTML = `Locations from ${dataList[index].title}`;
+
+      calcLabel.innerHTML = ``;
     });
+
+    characterAZButton.classList.add("hide");
   };
 
   xhr.send();
@@ -187,10 +202,14 @@ function defineAlphabeticalFilter(event) {
     filterButton.value = "Show films from A - Z";
     filterTypeLabel.innerHTML = "Animations from Z - A";
   }
+
+  
+  animationTotal.innerHTML =
+    "Total number of animations produced by Studio Ghibli: " +
+    allAnimations.length;
+
   showAnimations(alphabeticalFilter);
 }
-
-// PENSAR ONDE COLOCAR O BACKBUTTON - NO MOMENTO É FILHA DA DIV.BOTTOM-INFO
 
 function showLocationByFilm(locationsArray) {
   //const chosenAnimation = allAnimations[index].locations;
@@ -248,9 +267,9 @@ function showVehiclesByFilm(vehiclesArray) {
         <div class="cards">
         <img  class="posters" src="${element.img}" alt="Pôster de ${element.name}">
           <p id="film-title" class="film-info">${element.name}</p>
-          <p class="film-info">${element.description}</p>
-          <p class="film-info">${element.vehicle_class}</p>
-          <p class="film-info">${element.length}</p>
+          <p class="film-info-description">${element.description}</p>
+          <p class="film-info">Class: ${element.vehicle_class}</p>
+          <p class="film-info">Length: ${element.length}</p>
           
           
         </div>
@@ -260,3 +279,44 @@ function showVehiclesByFilm(vehiclesArray) {
 
   animationCards.innerHTML = vehiclesAnimationCards;
 }
+const mySelect = document.getElementById("drop-director");
+showFilmsByDirector();
+
+function showFilmsByDirector() {
+  const items = getAllValuesByKey(allAnimations, "director");
+
+  for (let i = 0; i < items.length; i++) {
+    const option = document.createElement("option");
+    option.text = items[i];
+    option.value = items[i];
+    option.setAttribute("key", "director");
+    mySelect.add(option);
+  }
+}
+
+function getAllValuesByKey(dataFilms, key) {
+  const values = dataFilms
+    .filter((film) => film[key] !== undefined)
+    .map((film) => film[key]);
+  // eslint-disable-next-line no-undef
+  const arrayDirectors = [...new Set(values)];
+  return arrayDirectors;
+}
+
+mySelect.addEventListener("change", (event) => {
+  const selectedValue = event.target.value;
+  const selectedKey =
+    event.target.options[event.target.selectedIndex].getAttribute("key");
+  const filmsByDirector = films.filterByDirector(
+    allAnimations,
+    selectedKey,
+    selectedValue
+  );
+
+  showAnimations(filmsByDirector);
+  filterTypeLabel.innerHTML = `${selectedValue} Films`;
+  const directorsTotalFilms = document.getElementById("label-total");
+  directorsTotalFilms.classList.add("list-container");
+
+  directorsTotalFilms.innerHTML = `Number of animations directed by ${selectedValue}: ${filmsByDirector.length}`;
+});
