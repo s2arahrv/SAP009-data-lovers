@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +15,7 @@ body {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;  
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @font-face {
@@ -72,7 +71,6 @@ main {
   flex-direction: column;
   overflow: auto;
   font-size: 1.6rem;
- 
 }
 
 .buttons {
@@ -84,7 +82,7 @@ main {
   flex-direction: row;
   justify-content: flex-end;
   padding-top: 2rem;
-  padding-right: 5rem; 
+  padding-right: 5rem;
 }
 
 .bottom-info {
@@ -96,15 +94,14 @@ main {
   height: 6rem;
   align-items: center;
   padding-right: 6rem;
-  padding-left: 5.2rem; 
+  padding-left: 5.2rem;
 }
 
 .calc-result {
-  color: #596F80;
+  color: #596f80;
   font-size: 1.8rem;
   font-weight: 500;
 }
-
 
 #filter-name-input {
   background-color: #c8e1e4;
@@ -115,16 +112,16 @@ main {
   outline: none;
   font-size: 1.5rem;
   height: 4rem;
-  margin-left: 3rem;  
+  margin-left: 3rem;
 }
 
 #filter-name-input:active {
   color: #c8e1e4;
 }
 
-.filter-button{
-  background-color: #ECD89A;
-  border: none;  
+.filter-button {
+  background-color: #ecd89a;
+  border: none;
   font-size: 1.5rem;
   border-radius: 1rem;
   border: none;
@@ -132,14 +129,33 @@ main {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   margin-left: 2rem;
-  align-items: center;  
+  align-items: center;
+}
+
+.filter-button-char {
+  background-color: #ecd89a;
+  border: none;
+  font-size: 1.5rem;
+  border-radius: 1rem;
+  border: none;
+  height: 4rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-left: 2rem;
+  align-items: center;
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .filter-type {
   display: flex;
-  padding-left: 6rem;
-  font-size: 2rem;
-  color: #1c6773; 
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1c6773;
 }
 
 .list-container {
@@ -150,34 +166,37 @@ main {
   height: 4rem;
 }
 
-
 /* FILMS CARDS */
 
 .animation-cards {
-  display: flex;  
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content:space-between;
-  padding-top: 2rem; 
+  justify-content: space-between;
+  padding-top: 2rem;
   padding-left: 3rem;
   padding-right: 3rem;
- }
+}
 
-.cards, .char-cards{
+.cards,
+.char-cards {
   display: flex;
   flex-direction: column;
   background-color: #c8e1e4;
   border-radius: 1rem;
   width: 25rem;
-  height: 36rem;
   margin: 2rem;
   justify-content: center;
   align-items: center;
   padding-top: 1.4rem;
-  padding-bottom: 1rem; 
+  padding-bottom: 1rem;
   border-color: #278b9a;
   border-style: solid;
-  color:#3B4A54
+  color: #3b4a54;
+}
+
+.char-cards {
+  height: 36rem;
 }
 
 .posters {
@@ -189,21 +208,28 @@ main {
 }
 
 .film-info-title {
-  font-size: 1.6rem;  
-  color: #3B4A54;
-  padding-bottom: .5rem;
-  padding-top: .5rem;
+  font-size: 1.6rem;
+  color: #3b4a54;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 .film-info {
   font-size: 1.4rem;
-  color: #3B4A54;
-  padding-bottom: .5rem;
+  color: #3b4a54;
+  padding-bottom: 0.5rem;
 }
 
-.cards:hover{
+.film-info-description {
+  font-size: 1.4rem;
+  padding-left: 1.5rem;
+  padding-bottom: 0.5rem;
+  color: #3b4a54;
+}
+
+.cards:hover {
   background-color: #e85b64;
-  color: #edd79d;  
+  color: #edd79d;
 }
 
 .cards:hover .film-info-title {
@@ -211,6 +237,10 @@ main {
 }
 
 .cards:hover .film-info {
+  color: #fcf8ee;
+}
+
+.cards:hover .film-info-description {
   color: #fcf8ee;
 }
 
@@ -233,7 +263,6 @@ main {
 #modal-wrapper.show {
   opacity: 1;
   pointer-events: auto;
-
 }
 .modal {
   display: flex;
@@ -251,7 +280,7 @@ main {
 
 .modal-title {
   font-family: "Eyad Al-Samman - Ghibli", Arial, Helvetica, sans-serif;
-  color: #288A99;
+  color: #288a99;
   font-weight: bold;
   font-size: 2rem;
   text-align: center;
@@ -271,7 +300,7 @@ main {
 }
 
 .more-info-bts {
-  background-color: #93C4CE;
+  background-color: #93c4ce;
   font-size: 1.5rem;
   border-radius: 0.5rem;
   border: none;
@@ -281,8 +310,9 @@ main {
   opacity: 0;
 }
 
-.more-info-bts:active, #close:active {
-  background-color: #EFBCAF;
+.more-info-bts:active,
+#close:active {
+  background-color: #efbcaf;
   color: #fff;
 }
 
@@ -302,13 +332,12 @@ main {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  background-color: #94C5CC;
+  background-color: #94c5cc;
   height: 2.5rem;
   padding: 0.6rem;
   border-radius: 0.5rem;
   border: none;
 }
-
 
 @media screen and (max-width: 600px) {
   .modal {
@@ -333,28 +362,27 @@ main {
 .char-cards {
   transition: transform 0.8s;
   position: relative;
-  border-color:#e85b64 ;
-  border-style: solid;  
+  border-color: #e85b64;
+  border-style: solid;
 }
 
-.char-cards:hover{
-  background-color: #FADCDD;
+.char-cards:hover {
+  background-color: #fadcdd;
   text-align: center;
   width: 25rem;
   height: 36rem;
-  
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
   position: absolute;
   backface-visibility: hidden;
 }
 
 .card-back {
   transform: rotateY(180deg);
-  border: .5rem;
-  /* width: 20rem;
-  height: 31.4rem;  */
+  border: 0.5rem;
+  height: 31.4rem;
 }
 
 .card-back img {
@@ -364,8 +392,7 @@ main {
 }
 
 .card-back-info {
-    text-align: left;
-    
+  text-align: left;
 }
 
 .card-front {
@@ -373,12 +400,10 @@ main {
 }
 
 .card-back .char-name {
-  
   font-size: 1.8rem;
   padding-bottom: 3rem;
   font-weight: 700;
-  color: #288A99;
-  
+  color: #288a99;
 }
 
 .char-name {
@@ -400,4 +425,7 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
+}
+.new-class {
+  width: 200rem;
 }
